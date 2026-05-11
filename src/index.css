@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-/* ================================================
-   DESIGN SYSTEM — Architectural Portfolio
-   Colors, Typography, Spacing from DESIGN.md
-   ================================================ */
+
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -11,11 +8,6 @@
   padding: 0;
 }
 
-/* ════════════════════════════════════════════════
-   STRICT TWO-COLOR SYSTEM
-   Dark:  canvas #111111 · ink #e3e3e3
-   Light: canvas #e3e3e3 · ink #111111
-   ════════════════════════════════════════════════ */
 
 :root {
   /* ── Core palette ── */
