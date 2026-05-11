@@ -114,7 +114,7 @@ function App() {
     <>
       {/* ── NAV ─────────────────────────────── */}
       <motion.nav 
-        className="fixed top-0 left-10 right-10 z-50 flex items-center justify-between px-10 py-6 bg-[var(--nav-bg)] backdrop-blur-md"
+        className="fixed top-0 left-10 right-10 z-50 flex items-center justify-between px-10 pt-10 pb-6 bg-[var(--nav-bg)] backdrop-blur-md"
         role="navigation" 
         aria-label="Main navigation"
         initial={{ y: -20, opacity: 0 }}
