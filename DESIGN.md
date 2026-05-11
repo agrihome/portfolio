@@ -1,53 +1,29 @@
 ---
 name: Architectural Portfolio
 colors:
-  surface: '#121414'
-  surface-dim: '#121414'
-  surface-bright: '#38393a'
-  surface-container-lowest: '#0d0f0f'
-  surface-container-low: '#1a1c1c'
-  surface-container: '#1e2020'
-  surface-container-high: '#282a2b'
-  surface-container-highest: '#333535'
-  on-surface: '#e2e2e2'
-  on-surface-variant: '#c4c7c7'
-  inverse-surface: '#e2e2e2'
-  inverse-on-surface: '#2f3131'
-  outline: '#8e9192'
-  outline-variant: '#444748'
-  surface-tint: '#c8c6c5'
-  primary: '#c8c6c5'
-  on-primary: '#313030'
-  primary-container: '#111111'
-  on-primary-container: '#7e7c7c'
-  inverse-primary: '#5f5e5e'
-  secondary: '#c6c6c6'
-  on-secondary: '#2f3131'
-  secondary-container: '#454747'
-  on-secondary-container: '#b5b5b5'
-  tertiary: '#cac6c3'
-  on-tertiary: '#32302f'
-  tertiary-container: '#121110'
-  on-tertiary-container: '#7f7c7a'
-  error: '#ffb4ab'
-  on-error: '#690005'
-  error-container: '#93000a'
-  on-error-container: '#ffdad6'
-  primary-fixed: '#e5e2e1'
-  primary-fixed-dim: '#c8c6c5'
-  on-primary-fixed: '#1c1b1b'
-  on-primary-fixed-variant: '#474646'
-  secondary-fixed: '#e2e2e2'
-  secondary-fixed-dim: '#c6c6c6'
-  on-secondary-fixed: '#1a1c1c'
-  on-secondary-fixed-variant: '#454747'
-  tertiary-fixed: '#e6e1df'
-  tertiary-fixed-dim: '#cac6c3'
-  on-tertiary-fixed: '#1d1b1a'
-  on-tertiary-fixed-variant: '#484645'
-  background: '#121414'
-  on-background: '#e2e2e2'
-  surface-variant: '#333535'
+  # ── Strict Two-Color System ──────────────────────────────
+  # DARK MODE
+  canvas-dark:       '#111111'   # background, all section fills
+  ink-dark:          '#e3e3e3'   # text, borders, icons, buttons
+  ink-dark-muted:    '#e3e3e3'   # muted text — use at 45% opacity in code
+  # Inverted blocks (high-contrast panels in dark mode)
+  canvas-dark-inv:   '#e3e3e3'
+  ink-dark-inv:      '#111111'
+
+  # LIGHT MODE
+  canvas-light:      '#e3e3e3'   # background, all section fills
+  ink-light:         '#111111'   # text, borders, icons, buttons
+  ink-light-muted:   '#111111'   # muted text — use at 45% opacity in code
+  # Inverted blocks (high-contrast panels in light mode)
+  canvas-light-inv:  '#111111'
+  ink-light-inv:     '#e3e3e3'
+
+  # ── Derived / Structural ─────────────────────────────────
+  # Borders use solid ink (no opacity tricks in spec)
+  border:            'var(--ink)'        # all 1px structural lines
+  border-subtle:     'rgba(ink, 0.18)'   # for grid separators only
+  background:        'var(--canvas)'     # alias
+  on-background:     'var(--ink)'        # alias
 typography:
   display-xl:
     fontFamily: Bebas Neue
@@ -106,47 +82,25 @@ The UI should evoke a sense of permanence and precision. It draws from the **Int
 
 ## Colors
 
-The palette is strictly **monochromatic and high-contrast**, designed to mimic the appearance of premium architectural blueprints or nocturnal gallery lighting.
+The palette is a **strict two-color binary system**. No gradients, no grey variants, no opacity trickery for backgrounds.
 
-### Semantic Color Roles
+### The Two Colors
 
-| Token | Hex | Role |
+| Token | Value | Role |
 |---|---|---|
-| `surface` | `#121414` | Base canvas — primary page background |
-| `surface-dim` | `#121414` | Dimmed surface variant |
-| `surface-bright` | `#38393a` | Highlighted/elevated surface |
-| `surface-container-lowest` | `#0d0f0f` | Deepest container level (e.g. sidebar gutters) |
-| `surface-container-low` | `#1a1c1c` | Low-elevation cards and panels |
-| `surface-container` | `#1e2020` | Default container background |
-| `surface-container-high` | `#282a2b` | Higher-elevation containers |
-| `surface-container-highest` | `#333535` | Topmost container (e.g. nav, modals) |
-| `on-surface` | `#e2e2e2` | Primary text / icons on surfaces |
-| `on-surface-variant` | `#c4c7c7` | Secondary text / muted labels |
-| `inverse-surface` | `#e2e2e2` | Inverted fill (for high-contrast overlays) |
-| `inverse-on-surface` | `#2f3131` | Text on inverted surface |
-| `outline` | `#8e9192` | Decorative borders, dividers |
-| `outline-variant` | `#444748` | Subtle structural borders |
-| `primary` | `#c8c6c5` | Core brand ink — buttons, icons, key type |
-| `on-primary` | `#313030` | Text on primary fill |
-| `primary-container` | `#111111` | Primary container background |
-| `on-primary-container` | `#7e7c7c` | Text on primary container |
-| `secondary` | `#c6c6c6` | Secondary interactive elements |
-| `on-secondary` | `#2f3131` | Text on secondary fill |
-| `secondary-container` | `#454747` | Tag / chip backgrounds |
-| `on-secondary-container` | `#b5b5b5` | Text on secondary container |
-| `tertiary` | `#cac6c3` | Tertiary accents / warm-neutral highlights |
-| `background` | `#121414` | Document background (same as surface) |
-| `on-background` | `#e2e2e2` | Text on background |
-| `error` | `#ffb4ab` | Error states |
-| `on-error` | `#690005` | Text on error fill |
+| **Canvas (dark)** | `#111111` | Page background — all section fills in dark mode |
+| **Ink (dark)** | `#e3e3e3` | All text, borders, icons, button fills |
+| **Canvas (light)** | `#e3e3e3` | Page background — all section fills in light mode |
+| **Ink (light)** | `#111111` | All text, borders, icons, button fills |
 
 ### Color Strategy
 
-- **Primary (`#111111` family):** The fundamental foundation. Used for main background and large structural containers — a deep, immersive canvas.
-- **Secondary/Neutral (`#E4E4E4` family):** The "ink" of the system. Primary typography, iconography, and structural borders providing crisp legibility against the dark void.
-- **Surface Strategy:** Layers are distinguished by tonal shifts between `surface-container-lowest` → `surface-container-highest`. Interactive states use subtle opacity shifts (80%) or complete tonal inversion.
+Depth and hierarchy are achieved through **two mechanisms only** — never through intermediate greys:
 
-> **Rule:** No color accent beyond monochrome. Hierarchy is earned through tone and form, never color saturation.
+1. **Inversion** — "elevated" panels (e.g. the About right column, the marquee strip) flip to `ink` background + `canvas` text, creating a bold tonal contrast block.
+2. **1px Borders** — all structural separation uses a thin `var(--ink)` line. The border IS the depth.
+
+> **Rule:** Every pixel on screen is either `#111111` or `#e3e3e3`. Muted text may use the ink at ~45% opacity for secondary labels only. No other color values are permitted.
 
 ---
 

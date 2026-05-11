@@ -9,44 +9,44 @@
   padding: 0;
 }
 
-/* ── Two-color system: #111111 (dark) and #e3e3e3 (light) ── */
+/* ════════════════════════════════════════════════
+   STRICT TWO-COLOR SYSTEM
+   Dark:  canvas #111111 · ink #e3e3e3
+   Light: canvas #e3e3e3 · ink #111111
+   ════════════════════════════════════════════════ */
 
 :root {
-  /* Dark mode — canvas: #111111, ink: #e3e3e3 */
-  --canvas:     #111111;
-  --ink:        #e3e3e3;
-  --ink-muted:  rgba(227, 227, 227, 0.45);
+  /* ── Core palette ── */
+  --canvas:        #111111;
+  --ink:           #e3e3e3;
+  --ink-muted:     rgba(227, 227, 227, 0.45);
 
-  /* Containers — ink opacity layered on canvas */
-  --color-surface-container-lowest: rgba(227, 227, 227, 0.02);
-  --color-surface-container-low:    rgba(227, 227, 227, 0.05);
-  --color-surface-container:        rgba(227, 227, 227, 0.08);
-  --color-surface-container-high:   rgba(227, 227, 227, 0.11);
-  --color-surface-container-highest:rgba(227, 227, 227, 0.16);
+  /* ── Inverted block (high-contrast panels) ── */
+  --canvas-inv:    #e3e3e3;
+  --ink-inv:       #111111;
 
-  /* Borders */
-  --color-outline:         rgba(227, 227, 227, 0.35);
-  --color-outline-variant: rgba(227, 227, 227, 0.14);
+  /* ── Borders (solid ink, no opacity for structure) ── */
+  --color-outline:         #e3e3e3;
+  --color-outline-variant: rgba(227, 227, 227, 0.18);
 
-  /* Semantic aliases */
+  /* ── Semantic aliases (all resolve to canvas/ink) ── */
+  --color-surface-container-low:    #111111;
+  --color-surface-container:        #111111;
+  --color-surface-container-lowest: #111111;
   --color-on-primary:   #111111;
   --color-on-secondary: #e3e3e3;
-  --color-background:   #111111;
-  --color-on-background:#e3e3e3;
   --color-on-surface:   #e3e3e3;
-  --color-on-surface-variant: rgba(227, 227, 227, 0.6);
   --color-inverse-surface:    #e3e3e3;
   --color-inverse-on-surface: #111111;
-  --color-error:              #e3e3e3;
 
-  /* Nav blur */
+  /* ── Nav glassmorphism ── */
   --nav-bg: rgba(17, 17, 17, 0.90);
 
-  /* Typography */
+  /* ── Typography ── */
   --font-display: 'Bebas Neue', sans-serif;
   --font-body:    'Space Mono', monospace;
 
-  /* Spacing */
+  /* ── Spacing ── */
   --spacing-unit:           4px;
   --spacing-gutter:         24px;
   --spacing-margin-desktop: 80px;
@@ -55,38 +55,31 @@
   --spacing-element-gap:    32px;
 }
 
-/* ================================================
-   LIGHT MODE — canvas: #e3e3e3, ink: #111111
-   ================================================ */
+/* ════════════════════════════════════════════════
+   LIGHT MODE
+   canvas #e3e3e3 · ink #111111
+   ════════════════════════════════════════════════ */
 
 html[data-theme="light"] {
-  --canvas:     #e3e3e3;
-  --ink:        #111111;
-  --ink-muted:  rgba(17, 17, 17, 0.45);
+  --canvas:        #e3e3e3;
+  --ink:           #111111;
+  --ink-muted:     rgba(17, 17, 17, 0.45);
 
-  /* Containers — ink opacity layered on canvas */
-  --color-surface-container-lowest: rgba(17, 17, 17, 0.02);
-  --color-surface-container-low:    rgba(17, 17, 17, 0.05);
-  --color-surface-container:        rgba(17, 17, 17, 0.08);
-  --color-surface-container-high:   rgba(17, 17, 17, 0.12);
-  --color-surface-container-highest:rgba(17, 17, 17, 0.18);
+  --canvas-inv:    #111111;
+  --ink-inv:       #e3e3e3;
 
-  /* Borders */
-  --color-outline:         rgba(17, 17, 17, 0.35);
-  --color-outline-variant: rgba(17, 17, 17, 0.14);
+  --color-outline:         #111111;
+  --color-outline-variant: rgba(17, 17, 17, 0.18);
 
-  /* Semantic aliases */
+  --color-surface-container-low:    #e3e3e3;
+  --color-surface-container:        #e3e3e3;
+  --color-surface-container-lowest: #e3e3e3;
   --color-on-primary:   #e3e3e3;
   --color-on-secondary: #111111;
-  --color-background:   #e3e3e3;
-  --color-on-background:#111111;
   --color-on-surface:   #111111;
-  --color-on-surface-variant: rgba(17, 17, 17, 0.6);
   --color-inverse-surface:    #111111;
   --color-inverse-on-surface: #e3e3e3;
-  --color-error:              #111111;
 
-  /* Nav blur */
   --nav-bg: rgba(227, 227, 227, 0.92);
 }
 
@@ -457,7 +450,9 @@ body {
   border-bottom: 1px solid var(--color-outline-variant);
   overflow: hidden;
   padding: 16px 0;
-  background: var(--color-surface-container-lowest);
+  /* Inverted strip — canvas-inv bg, ink-inv text */
+  background: var(--canvas-inv);
+  color: var(--ink-inv);
 }
 
 .marquee-inner {
@@ -475,13 +470,13 @@ body {
   font-family: var(--font-display);
   font-size: 16px;
   letter-spacing: 0.1em;
-  color: var(--ink-muted);
+  color: var(--ink-inv);
 }
 
 .marquee-dot {
   width: 6px;
   height: 6px;
-  background: var(--ink-muted);
+  background: var(--ink-inv);
   flex-shrink: 0;
 }
 
@@ -544,7 +539,8 @@ body {
   width: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: var(--color-surface-container-low);
+  background: var(--canvas);
+  border-bottom: 1px solid var(--color-outline-variant);
 }
 
 .project-card-img-wrap img {
@@ -735,7 +731,7 @@ body {
   top: 0;
   bottom: 0;
   width: 0;
-  background: var(--color-surface-container-low);
+  background: var(--ink);
   transition: width 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 0;
 }
@@ -747,6 +743,13 @@ body {
 .service-item > * {
   position: relative;
   z-index: 1;
+}
+
+/* When hovered, all child text flips to canvas color */
+.service-item:hover .service-name,
+.service-item:hover .service-num,
+.service-item:hover .service-arrow {
+  color: var(--canvas);
 }
 
 .service-item-left {
@@ -813,7 +816,9 @@ body {
 }
 
 .about-right {
-  background: var(--color-surface-container-low);
+  /* Inverted panel — solid ink bg, canvas text */
+  background: var(--canvas-inv);
+  color: var(--ink-inv);
   padding: 64px;
   display: flex;
   flex-direction: column;
@@ -866,7 +871,28 @@ body {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 26px;
+  color: var(--ink-inv);
+  opacity: 0.75;
+}
+
+/* Chips inside the inverted about-left panel */
+.about-left .chip {
+  border-color: var(--color-outline-variant);
   color: var(--ink-muted);
+}
+.about-left .chip:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* Label-caps inside inverted about-right */
+.about-right .label-caps {
+  color: var(--ink-inv);
+  opacity: 0.6;
+}
+.about-right p {
+  color: var(--ink-inv);
+  opacity: 0.75;
 }
 
 .about-right-bottom {
@@ -1115,7 +1141,8 @@ body,
    ================================================ */
 
 .project-card-placeholder {
-  background: var(--color-surface-container-low);
+  background: var(--canvas);
+  border-bottom: 1px solid var(--color-outline-variant);
   display: flex;
   align-items: center;
   justify-content: center;
