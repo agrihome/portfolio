@@ -92,7 +92,7 @@ function App() {
     <>
       {/* ── NAV ─────────────────────────────── */}
       <motion.nav 
-        className="nav" 
+        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-12 py-5 bg-[var(--nav-bg)] backdrop-blur-md"
         role="navigation" 
         aria-label="Main navigation"
         initial={{ y: -20, opacity: 0 }}
@@ -100,7 +100,7 @@ function App() {
         transition={{ duration: 0.5 }}
       >
         <a href="/" className="nav-logo" aria-label="Home">STUDIO</a>
-        <ul className="nav-links">
+        <ul className="nav-links hidden md:flex items-center gap-10 list-none">
           {['Work', 'Services', 'About', 'Process'].map((item, i) => (
             <motion.li 
               key={item}
@@ -112,10 +112,10 @@ function App() {
             </motion.li>
           ))}
         </ul>
-        <div className="nav-right">
+        <div className="nav-right flex items-center gap-5">
           <button
             id="theme-toggle-btn"
-            className="theme-toggle bg-red-500"
+            className="theme-toggle flex items-center justify-center w-8 h-8 cursor-pointer bg-transparent text-[var(--ink-muted)] hover:text-[var(--ink)] transition-colors"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
@@ -138,7 +138,7 @@ function App() {
       </motion.nav>
 
       {/* ── HERO ────────────────────────────── */}
-      <section id="home" className="hero" aria-label="Hero section">
+      <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section">
         <div className="hero-center">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
