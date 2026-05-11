@@ -115,7 +115,7 @@ const Work = () => {
   ]
 
   return (
-    <section id="work" className="py-48 flex flex-col items-center w-full" aria-label="Selected work">
+    <section id="work" className="py-24 flex flex-col items-center w-full" aria-label="Selected work">
       <div className="w-full">
         <motion.div
           className="mb-12 text-center"

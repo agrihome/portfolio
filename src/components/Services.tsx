@@ -11,7 +11,7 @@ const SERVICES = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-48 flex flex-col items-center w-full" aria-label="Services">
+    <section id="services" className="py-24 flex flex-col items-center w-full" aria-label="Services">
       <div className="">
         <div className="pb-24 text-center">
           <Text3DFlip className="pb-12 tracking-tighter mx-auto headline-lg" secondaryChildren="WHAT I DO">
