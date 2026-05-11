@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react'
 import Text3DFlip from './ui/text-3d-flip'
 import youtubeMockup from '../assets/youtube.png'
 import instaMockup from '../assets/insta.png'
+import appWebsiteMockup from '../assets/app-website.png'
+import evWebsiteMockup from '../assets/ev-website.png'
 
 const PROJECTS = [
   {
@@ -33,20 +35,24 @@ const PROJECTS = [
 
 const Work = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const slides = [youtubeMockup, instaMockup]
+  
+  const slideSets = [
+    [youtubeMockup, instaMockup],
+    [appWebsiteMockup, evWebsiteMockup],
+  ]
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
+      setCurrentSlide((prev) => (prev + 1) % 2) // Assuming both sets have 2 slides
     }, 3000)
     return () => clearInterval(timer)
-  }, [slides.length])
+  }, [])
 
   return (
     <section id="work" className="section py-48 px-10 md:px-40 flex flex-col items-center" aria-label="Selected work">
       <div className="max-w-[1600px] w-full">
         <motion.div 
-          className="mb-32 text-center"
+          className="mb-48 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -68,11 +74,11 @@ const Work = () => {
               transition={{ duration: 0.6, delay: i * 0.1 }}
             >
               <div className="aspect-square w-full bg-[var(--canvas)] overflow-hidden relative border border-[var(--ink)]/20">
-                {i === 0 ? (
+                {i < slideSets.length ? (
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={currentSlide}
-                      src={slides[currentSlide]}
+                      src={slideSets[i][currentSlide]}
                       alt="Project slideshow"
                       className="w-full h-full object-cover"
                       initial={{ opacity: 0 }}
@@ -110,7 +116,16 @@ const Work = () => {
                        </a>
                      </div>
                    ) : (
-                     <Text3DFlip className="text-white text-2xl font-bold tracking-widest justify-center" rotateDirection="top">VIEW CASE</Text3DFlip>
+                     <a 
+                       href={i === 1 ? "https://everydaystandards.in" : "#"} 
+                       target={i === 1 ? "_blank" : "_self"}
+                       rel="noopener noreferrer"
+                       className="cursor-pointer"
+                     >
+                       <Text3DFlip className="text-white text-2xl font-bold tracking-widest justify-center" rotateDirection="top">
+                         VIEW CASE
+                       </Text3DFlip>
+                     </a>
                    )}
                 </div>
               </div>
