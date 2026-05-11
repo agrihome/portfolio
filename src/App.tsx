@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react'
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import './index.css'
-import youtubeMockup from './assets/youtube.png'
-import instaMockup from './assets/insta.png'
 import cursorFollowImg from './assets/cursor follow.jpeg'
 import Text3DFlip from './components/ui/text-3d-flip'
 import Work from './components/Work'
+import Services from './components/Services'
 
 const MARQUEE_ITEMS = [
   'Mobile App Development',
@@ -26,13 +25,6 @@ const STATS = [
   { number: '8', label: 'Active Products' },
 ]
 
-const SERVICES = [
-  { num: '01', name: 'App Design & Development' },
-  { num: '02', name: 'Growth & User Acquisition' },
-  { num: '03', name: 'App Store Optimization' },
-  { num: '04', name: 'Product Strategy' },
-  { num: '05', name: 'Marketing & Launch' },
-]
 
 const PROCESS = [
   {
@@ -223,73 +215,11 @@ const App = () => {
         </motion.div>
       </section>
 
-      {/* ── MARQUEE ─────────────────────────── */}
-      <div className="marquee-strip" aria-hidden="true">
-        <div className="marquee-inner">
-          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-            <div key={i} className="marquee-item">
-              <div className="marquee-dot" />
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── WORK ────────────────────────────── */}
       <Work />
 
-      {/* ── STATS ───────────────────────────── */}
-      <motion.div 
-        className="stats-row" 
-        aria-label="Key statistics"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          visible: { transition: { staggerChildren: 0.1 } },
-          hidden: {}
-        }}
-      >
-        {STATS.map((s, i) => (
-          <motion.div 
-            key={i} 
-            className="stat-item"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 }
-            }}
-          >
-            <span className="stat-number">{s.number}</span>
-            <span className="stat-label label-caps">{s.label}</span>
-          </motion.div>
-        ))}
-      </motion.div>
-
       {/* ── SERVICES ────────────────────────── */}
-      <section id="services" className="section" aria-label="Services">
-        <motion.div 
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="headline-lg">What I Do</h2>
-          <span className="section-header-right">Services</span>
-        </motion.div>
-
-        <div className="services-list">
-          {SERVICES.map((s) => (
-            <div key={s.num} className="service-item" id={`service-${s.num}`}>
-              <div className="service-item-left">
-                <span className="service-num label-caps">{s.num}</span>
-                <span className="service-name">{s.name}</span>
-              </div>
-              <span className="service-arrow" aria-hidden="true">→</span>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Services />
 
       {/* ── ABOUT ───────────────────────────── */}
       <section id="about" className="section" aria-label="About">
