@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'motion/react'
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import './index.css'
 import appMockup from './assets/hero.png'
+import cursorFollowImg from './assets/cursor follow.jpeg'
 
 const MARQUEE_ITEMS = [
   'Mobile App Development',
@@ -76,11 +77,32 @@ function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [time, setTime] = useState(new Date())
 
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const springConfig = { stiffness: 100, damping: 30, mass: 0.5 }
+  const smoothX = useSpring(mouseX, springConfig)
+  const smoothY = useSpring(mouseY, springConfig)
+
+  // 3D Tilt Effect
+  const rotateX = useSpring(useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [20, -20]), springConfig)
+  const rotateY = useSpring(useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-20, 20]), springConfig)
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
     const timer = setInterval(() => setTime(new Date()), 1000)
-    return () => clearInterval(timer)
-  }, [theme])
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX)
+      mouseY.set(e.clientY)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => {
+      clearInterval(timer)
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [theme, mouseX, mouseY])
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
 
@@ -138,7 +160,30 @@ function App() {
       </motion.nav>
 
       {/* ── HERO ────────────────────────────── */}
-      <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section">
+      <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section" style={{ perspective: '1200px' }}>
+        {/* Cursor Following Image */}
+        <motion.div
+          className="absolute pointer-events-none z-50 hidden md:block"
+          style={{
+            x: smoothX,
+            y: smoothY,
+            rotateX,
+            rotateY,
+            translateX: '-50%',
+            translateY: '-50%',
+            width: '300px',
+            height: 'auto',
+            opacity: 1,
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          <img 
+            src={cursorFollowImg} 
+            alt="" 
+            className="w-full h-auto shadow-2xl rounded-2xl" 
+          />
+        </motion.div>
+
         <div className="hero-center relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
