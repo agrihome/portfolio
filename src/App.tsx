@@ -29,6 +29,18 @@ const PROJECTS = [
     year: '2024',
     tag: 'Finance App',
   },
+  {
+    id: 'p3',
+    name: 'Vision',
+    year: '2024',
+    tag: 'AI Design Tool',
+  },
+  {
+    id: 'p4',
+    name: 'Nexus',
+    year: '2023',
+    tag: 'Social Platform',
+  },
 ]
 
 const STATS = [
@@ -248,79 +260,54 @@ function App() {
       </div>
 
       {/* ── WORK ────────────────────────────── */}
-      <section id="work" className="section" aria-label="Selected work">
-        <motion.div 
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="headline-lg">Selected Work</h2>
-          <span className="section-header-right">2021 — 2025</span>
-        </motion.div>
-
-        <motion.div 
-          className="projects-grid"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } },
-            hidden: {}
-          }}
-        >
-          {/* Large featured card */}
-          <motion.article 
-            className="project-card project-card-large" 
-            id="project-destiny"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-            }}
+      <section id="work" className="section py-48 px-10 md:px-40 flex flex-col items-center" aria-label="Selected work">
+        <div className="max-w-[1600px] w-full">
+          <motion.div 
+            className="mb-32 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="project-card-img-wrap">
-              <img
-                src={appMockup}
-                alt="Destiny and Vault app mockups on dark background"
-                loading="lazy"
-              />
-            </div>
-            <div className="project-card-meta">
-              <span className="project-card-name">Destiny — Habit OS</span>
-              <div className="project-card-right">
-                <span className="project-card-year">2025</span>
-                <span className="project-card-tag">Productivity · iOS</span>
-              </div>
-            </div>
-          </motion.article>
+            <Text3DFlip className="headline-lg tracking-tighter inline-block" secondaryChildren="PROJECTS">
+              SELECTED WORK
+            </Text3DFlip>
+          </motion.div>
 
-          {/* Smaller cards */}
-          {PROJECTS.map((p) => (
-            <motion.article
-              key={p.id}
-              className="project-card"
-              id={`project-${p.id}`}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-              }}
-            >
-              <div className="project-card-img-wrap project-card-placeholder">
-                <span className="project-card-initial">
-                  {p.name[0]}
-                </span>
-              </div>
-              <div className="project-card-meta">
-                <span className="project-card-name">{p.name}</span>
-                <div className="project-card-right">
-                  <span className="project-card-year">{p.year}</span>
-                  <span className="project-card-tag">{p.tag}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {PROJECTS.map((p, i) => (
+              <motion.article
+                key={p.id}
+                className="group relative flex flex-col gap-4 w-full"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+              >
+                <div className="aspect-square w-full bg-[var(--canvas)] overflow-hidden relative border border-[var(--ink)]/20">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    <span className="text-8xl font-display uppercase">{p.name[0]}</span>
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                     <Text3DFlip className="text-white text-2xl font-bold tracking-widest" rotateDirection="top">VIEW CASE</Text3DFlip>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+                
+                  <div className="flex flex-col items-center text-center pt-6 gap-1">
+                   <Text3DFlip className="text-2xl font-bold uppercase tracking-tight font-display justify-center" as="h3">
+                     {p.name}
+                   </Text3DFlip>
+                   <div className="flex items-center gap-2">
+                     <span className="text-sm opacity-50 uppercase tracking-widest">{p.tag}</span>
+                     <span className="text-xs opacity-20">•</span>
+                     <span className="text-sm font-bold opacity-30">{p.year}</span>
+                   </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── STATS ───────────────────────────── */}
