@@ -4,6 +4,7 @@ import cursorFollowImg from './assets/cursor follow.jpeg'
 import Text3DFlip from './components/ui/text-3d-flip'
 import Work from './components/Work'
 import Services from './components/Services'
+import Contact from './components/Contact'
 
 const MARQUEE_ITEMS = [
   'Mobile App Development',
@@ -214,149 +215,11 @@ const App = () => {
         </motion.div>
       </section>
 
-      {/* ── WORK ────────────────────────────── */}
       <Work />
-
-      {/* ── SERVICES ────────────────────────── */}
       <Services />
+      
+      <Contact />
 
-      {/* ── ABOUT ───────────────────────────── */}
-      <section id="about" className="section" aria-label="About">
-        <motion.div 
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="headline-lg">The Builder</h2>
-          <span className="section-header-right">About</span>
-        </motion.div>
-
-        <div className="about-grid">
-          <motion.div 
-            className="about-left"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="about-big-text">I Ship.<br />I Scale.<br />I Repeat.</div>
-            <p className="about-body">
-              I'm a solo indie developer and marketer who has taken apps from idea to millions of downloads. I don't hand off — I own the full stack: product, design, engineering, and growth.
-            </p>
-            <p className="about-body" style={{ marginTop: '16px' }}>
-              My apps are used by people in 40+ countries. I care deeply about the craft — every pixel, every animation, every ASO keyword.
-            </p>
-            <div className="about-tags">
-              {TAGS.map((tag) => (
-                <span key={tag} className="chip">{tag}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="about-right"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="about-right-top">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '20px' }}>
-                Philosophy
-              </span>
-              <p>
-                Most apps fail not because of bad code — but because of bad decisions. I obsess over the problem before writing a single line.
-              </p>
-              <p style={{ marginTop: '16px' }}>
-                Marketing is not a phase that comes after launch. It starts on day one. Distribution is part of the product.
-              </p>
-            </div>
-
-            <div className="about-right-bottom">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '20px' }}>
-                Currently
-              </span>
-              <p>Building in public · Open to consulting · Based in India</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── PROCESS ─────────────────────────── */}
-      <section id="process" className="section" aria-label="Process">
-        <motion.div 
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="headline-lg">How I Work</h2>
-          <span className="section-header-right">Process</span>
-        </motion.div>
-
-        <motion.div 
-          className="process-row"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            visible: { transition: { staggerChildren: 0.15 } },
-            hidden: {}
-          }}
-        >
-          {PROCESS.map((step) => (
-            <motion.div 
-              key={step.num} 
-              className="process-step" 
-              id={`process-${step.num}`}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <div className="process-step-num label-caps">{step.num}</div>
-              <div className="process-step-title">{step.title}</div>
-              <p className="process-step-desc">{step.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
-      {/* ── CTA ─────────────────────────────── */}
-      <section id="contact" className="cta-section" aria-label="Contact">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          Have an <em>Idea?</em><br />
-          Let's Build It.
-        </motion.h2>
-        <div className="cta-actions">
-          <a href="mailto:hello@studio.com" className="btn-primary" id="cta-email-btn">
-            hello@studio.com
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer" className="btn-secondary" id="cta-twitter-btn">
-            Follow on X
-          </a>
-        </div>
-      </section>
-
-      {/* ── FOOTER ──────────────────────────── */}
-      <footer className="footer" role="contentinfo">
-        <span className="footer-logo">STUDIO</span>
-        <ul className="footer-links">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <span className="footer-copy">© 2025</span>
-      </footer>
     </>
   )
 }
