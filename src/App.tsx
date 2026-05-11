@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'motion/react'
 import './index.css'
 import appMockup from './assets/hero.png'
 
@@ -83,13 +84,26 @@ function App() {
   return (
     <>
       {/* ── NAV ─────────────────────────────── */}
-      <nav className="nav" role="navigation" aria-label="Main navigation">
+      <motion.nav 
+        className="nav" 
+        role="navigation" 
+        aria-label="Main navigation"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <a href="/" className="nav-logo" aria-label="Home">STUDIO</a>
         <ul className="nav-links">
-          <li><a href="#work" className="active">Work</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#process">Process</a></li>
+          {['Work', 'Services', 'About', 'Process'].map((item, i) => (
+            <motion.li 
+              key={item}
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 + i * 0.1 }}
+            >
+              <a href={`#${item.toLowerCase()}`} className={item === 'Work' ? 'active' : ''}>{item}</a>
+            </motion.li>
+          ))}
         </ul>
         <div className="nav-right">
           <button
@@ -102,7 +116,7 @@ function App() {
           </button>
           <a href="#contact" className="nav-cta" id="nav-cta-link">Let's Talk</a>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* ── HERO ────────────────────────────── */}
       <section id="home" className="hero" aria-label="Hero section" style={{ paddingTop: '80px' }}>
@@ -117,14 +131,23 @@ function App() {
         </div>
 
         <div className="hero-headline">
-          <h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1], delay: 0.2 }}
+          >
             I Build<br />
             Apps <em>People</em><br />
             Actually Use
-          </h1>
+          </motion.h1>
         </div>
 
-        <div className="hero-sub-row">
+        <motion.div 
+          className="hero-sub-row"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
           <p className="hero-sub-desc">
             From zero to the App Store — I design, develop, and market mobile apps that acquire users and retain them.
           </p>
@@ -136,7 +159,7 @@ function App() {
             <div className="scroll-line" />
             <span>Scroll</span>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ── MARQUEE ─────────────────────────── */}
@@ -153,14 +176,36 @@ function App() {
 
       {/* ── WORK ────────────────────────────── */}
       <section id="work" className="section" aria-label="Selected work">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="headline-lg">Selected Work</h2>
           <span className="section-header-right">2021 — 2025</span>
-        </div>
+        </motion.div>
 
-        <div className="projects-grid">
+        <motion.div 
+          className="projects-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.1 } },
+            hidden: {}
+          }}
+        >
           {/* Large featured card */}
-          <article className="project-card project-card-large" id="project-destiny">
+          <motion.article 
+            className="project-card project-card-large" 
+            id="project-destiny"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+            }}
+          >
             <div className="project-card-img-wrap">
               <img
                 src={appMockup}
@@ -175,14 +220,18 @@ function App() {
                 <span className="project-card-tag">Productivity · iOS</span>
               </div>
             </div>
-          </article>
+          </motion.article>
 
           {/* Smaller cards */}
           {PROJECTS.map((p) => (
-            <article
+            <motion.article
               key={p.id}
               className="project-card"
               id={`project-${p.id}`}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+              }}
             >
               <div className="project-card-img-wrap project-card-placeholder">
                 <span className="project-card-initial">
@@ -196,27 +245,50 @@ function App() {
                   <span className="project-card-tag">{p.tag}</span>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* ── STATS ───────────────────────────── */}
-      <div className="stats-row" aria-label="Key statistics">
+      <motion.div 
+        className="stats-row" 
+        aria-label="Key statistics"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } },
+          hidden: {}
+        }}
+      >
         {STATS.map((s, i) => (
-          <div key={i} className="stat-item">
+          <motion.div 
+            key={i} 
+            className="stat-item"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 }
+            }}
+          >
             <span className="stat-number">{s.number}</span>
             <span className="stat-label label-caps">{s.label}</span>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* ── SERVICES ────────────────────────── */}
       <section id="services" className="section" aria-label="Services">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="headline-lg">What I Do</h2>
           <span className="section-header-right">Services</span>
-        </div>
+        </motion.div>
 
         <div className="services-list">
           {SERVICES.map((s) => (
@@ -233,13 +305,25 @@ function App() {
 
       {/* ── ABOUT ───────────────────────────── */}
       <section id="about" className="section" aria-label="About">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="headline-lg">The Builder</h2>
           <span className="section-header-right">About</span>
-        </div>
+        </motion.div>
 
         <div className="about-grid">
-          <div className="about-left">
+          <motion.div 
+            className="about-left"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <div className="about-big-text">I Ship.<br />I Scale.<br />I Repeat.</div>
             <p className="about-body">
               I'm a solo indie developer and marketer who has taken apps from idea to millions of downloads. I don't hand off — I own the full stack: product, design, engineering, and growth.
@@ -252,9 +336,15 @@ function App() {
                 <span key={tag} className="chip">{tag}</span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="about-right">
+          <motion.div 
+            className="about-right"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <div className="about-right-top">
               <span className="label-caps" style={{ display: 'block', marginBottom: '20px' }}>
                 Philosophy
@@ -273,34 +363,62 @@ function App() {
               </span>
               <p>Building in public · Open to consulting · Based in India</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── PROCESS ─────────────────────────── */}
       <section id="process" className="section" aria-label="Process">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="headline-lg">How I Work</h2>
           <span className="section-header-right">Process</span>
-        </div>
+        </motion.div>
 
-        <div className="process-row">
+        <motion.div 
+          className="process-row"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.15 } },
+            hidden: {}
+          }}
+        >
           {PROCESS.map((step) => (
-            <div key={step.num} className="process-step" id={`process-${step.num}`}>
+            <motion.div 
+              key={step.num} 
+              className="process-step" 
+              id={`process-${step.num}`}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
               <div className="process-step-num label-caps">{step.num}</div>
               <div className="process-step-title">{step.title}</div>
               <p className="process-step-desc">{step.desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* ── CTA ─────────────────────────────── */}
       <section id="contact" className="cta-section" aria-label="Contact">
-        <h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           Have an <em>Idea?</em><br />
           Let's Build It.
-        </h2>
+        </motion.h2>
         <div className="cta-actions">
           <a href="mailto:hello@studio.com" className="btn-primary" id="cta-email-btn">
             hello@studio.com
