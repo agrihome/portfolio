@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import './index.css'
-import appMockup from './assets/hero.png'
+import youtubeMockup from './assets/youtube.png'
+import instaMockup from './assets/insta.png'
 import cursorFollowImg from './assets/cursor follow.jpeg'
 import Text3DFlip from './components/ui/text-3d-flip'
 
@@ -86,9 +87,19 @@ const TAGS = [
   'Firebase', 'Growth', 'ASO', 'Product Design',
 ]
 
-function App() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+const App = () => {
   const [time, setTime] = useState(new Date())
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const slides = [youtubeMockup, instaMockup]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -285,24 +296,26 @@ function App() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <div className="aspect-square w-full bg-[var(--canvas)] overflow-hidden relative border border-[var(--ink)]/20">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                    <span className="text-8xl font-display uppercase">{p.name[0]}</span>
-                  </div>
+                  {i === 0 ? (
+                    <motion.img
+                      key={currentSlide}
+                      src={slides[currentSlide]}
+                      alt="Project slideshow"
+                      className="w-full h-full object-cover"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1 }}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                      <span className="text-8xl font-display uppercase">{p.name[0]}</span>
+                    </div>
+                  )}
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                      <Text3DFlip className="text-white text-2xl font-bold tracking-widest" rotateDirection="top">VIEW CASE</Text3DFlip>
                   </div>
-                </div>
-                
-                  <div className="flex flex-col items-center text-center pt-6 gap-1">
-                   <Text3DFlip className="text-2xl font-bold uppercase tracking-tight font-display justify-center" as="h3">
-                     {p.name}
-                   </Text3DFlip>
-                   <div className="flex items-center gap-2">
-                     <span className="text-sm opacity-50 uppercase tracking-widest">{p.tag}</span>
-                     <span className="text-xs opacity-20">•</span>
-                     <span className="text-sm font-bold opacity-30">{p.year}</span>
-                   </div>
                 </div>
               </motion.article>
             ))}
