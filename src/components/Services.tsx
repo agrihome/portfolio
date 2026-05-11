@@ -11,21 +11,19 @@ const SERVICES = [
 
 const Services = () => {
   return (
-    <section id="services" className="section py-48 px-10 md:px-40 flex flex-col items-center" aria-label="Services">
-      <div className="max-w-[1600px] w-full">
+    <section id="services" className="py-48 flex flex-col items-center w-full" aria-label="Services">
+      <div className="">
         <div className="pb-24 text-center">
-          <Text3DFlip className="pb-12 tracking-tighter mx-auto headline-lg" secondaryChildren="SERVICES">
+          <Text3DFlip className="pb-12 tracking-tighter mx-auto headline-lg" secondaryChildren="WHAT I DO">
             WHAT I DO
           </Text3DFlip>
         </div>
 
-        <div className="services-list w-full flex flex-col">
+        <div className="services-list w-full flex flex-col items-center">
           {SERVICES.map((s) => (
-            <div key={s.num} className="service-item w-full flex items-center justify-center py-10 md:py-16 border-t border-[var(--color-outline-variant)] group cursor-pointer" id={`service-${s.num}`}>
-              <div className="flex items-center justify-center gap-6 md:gap-12">
-                <span className="service-num label-caps font-body text-xs md:text-sm font-bold uppercase tracking-[0.1em] text-[var(--ink-muted)] hidden md:block">{s.num}</span>
+            <div key={s.num} className="service-item flex items-center justify-center py-10 md:py-16 border-t border-[var(--color-outline-variant)] group cursor-pointer" id={`service-${s.num}`}>
+              <div className="flex items-center gap-6 md:gap-16">
                 <span className="service-name font-display text-3xl md:text-5xl font-bold uppercase tracking-tight text-[var(--ink)] group-hover:text-pink-500 transition-colors text-center">{s.name}</span>
-                <span className="service-arrow text-3xl md:text-5xl text-[var(--ink-muted)] group-hover:text-[var(--ink)] group-hover:translate-x-4 transition-all duration-300 hidden md:block" aria-hidden="true">→</span>
               </div>
             </div>
           ))}
