@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react'
 import './index.css'
 import youtubeMockup from './assets/youtube.png'
 import instaMockup from './assets/insta.png'
 import cursorFollowImg from './assets/cursor follow.jpeg'
 import Text3DFlip from './components/ui/text-3d-flip'
+import Work from './components/Work'
 
 const MARQUEE_ITEMS = [
   'Mobile App Development',
@@ -17,32 +18,6 @@ const MARQUEE_ITEMS = [
   'Swift & Kotlin',
 ]
 
-const PROJECTS = [
-  {
-    id: 'p1',
-    name: 'Destiny',
-    year: '2025',
-    tag: 'Habit Tracker',
-  },
-  {
-    id: 'p2',
-    name: 'Vault',
-    year: '2024',
-    tag: 'Finance App',
-  },
-  {
-    id: 'p3',
-    name: 'Vision',
-    year: '2024',
-    tag: 'AI Design Tool',
-  },
-  {
-    id: 'p4',
-    name: 'Nexus',
-    year: '2023',
-    tag: 'Social Platform',
-  },
-]
 
 const STATS = [
   { number: '12+', label: 'Apps Shipped' },
@@ -90,16 +65,6 @@ const TAGS = [
 const App = () => {
   const [time, setTime] = useState(new Date())
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  const slides = [youtubeMockup, instaMockup]
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 3000)
-    return () => clearInterval(timer)
-  }, [])
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -271,57 +236,7 @@ const App = () => {
       </div>
 
       {/* ── WORK ────────────────────────────── */}
-      <section id="work" className="section py-48 px-10 md:px-40 flex flex-col items-center" aria-label="Selected work">
-        <div className="max-w-[1600px] w-full">
-          <motion.div 
-            className="mb-32 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Text3DFlip className="headline-lg tracking-tighter inline-block" secondaryChildren="PROJECTS">
-              SELECTED WORK
-            </Text3DFlip>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {PROJECTS.map((p, i) => (
-              <motion.article
-                key={p.id}
-                className="group relative flex flex-col gap-4 w-full"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-              >
-                <div className="aspect-square w-full bg-[var(--canvas)] overflow-hidden relative border border-[var(--ink)]/20">
-                  {i === 0 ? (
-                    <motion.img
-                      key={currentSlide}
-                      src={slides[currentSlide]}
-                      alt="Project slideshow"
-                      className="w-full h-full object-cover"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 1 }}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                      <span className="text-8xl font-display uppercase">{p.name[0]}</span>
-                    </div>
-                  )}
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                     <Text3DFlip className="text-white text-2xl font-bold tracking-widest" rotateDirection="top">VIEW CASE</Text3DFlip>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Work />
 
       {/* ── STATS ───────────────────────────── */}
       <motion.div 
@@ -380,7 +295,8 @@ const App = () => {
       <section id="about" className="section" aria-label="About">
         <motion.div 
           className="section-header"
-          initial={{ opacity: 0, y: 20 }}          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
