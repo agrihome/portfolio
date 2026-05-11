@@ -74,12 +74,19 @@ const TAGS = [
 
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [time, setTime] = useState(new Date())
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
+    const timer = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(timer)
   }, [theme])
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
+  }
 
   return (
     <>
@@ -108,7 +115,7 @@ function App() {
         <div className="nav-right">
           <button
             id="theme-toggle-btn"
-            className="theme-toggle"
+            className="theme-toggle bg-red-500"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
@@ -131,45 +138,40 @@ function App() {
       </motion.nav>
 
       {/* ── HERO ────────────────────────────── */}
-      <section id="home" className="hero" aria-label="Hero section" style={{ paddingTop: '80px' }}>
-        <div className="hero-meta-row">
-          <div className="hero-meta-left">
-            <span className="label-caps">Est. 2021</span>
-            <span className="label-caps" style={{ color: 'var(--ink-muted)' }}>Mobile Apps & Marketing</span>
-          </div>
-          <div className="hero-meta-right">
-            <span className="hero-index label-caps">Available for projects</span>
-          </div>
-        </div>
-
-        <div className="hero-headline">
+      <section id="home" className="hero" aria-label="Hero section">
+        <div className="hero-center">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1], delay: 0.2 }}
+            transition={{ duration: 1, ease: [0.215, 0.61, 0.355, 1], delay: 0.2 }}
           >
-            I Build<br />
-            Apps <em>People</em><br />
-            Actually Use
+            I THINK<br />
+            CREATE,<br />
+            MARKET
           </motion.h1>
         </div>
 
         <motion.div 
-          className="hero-sub-row"
+          className="nominee-badge"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <span className="nominee-logo">w.</span>
+          <span className="nominee-text">Nominee</span>
+        </motion.div>
+
+        <motion.div 
+          className="hero-footer"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
+          transition={{ duration: 1, delay: 1 }}
         >
-          <p className="hero-sub-desc">
-            From zero to the App Store — I design, develop, and market mobile apps that acquire users and retain them.
-          </p>
-          <div className="hero-sub-actions">
-            <a href="#work" className="btn-primary" id="hero-view-work-btn">View Work</a>
-            <a href="#contact" className="btn-secondary" id="hero-contact-btn">Start a Project</a>
+          <div className="hero-footer-left label-caps">
+            I BUILD, SCALE & MARKET APPS THAT PEOPLE LOVE.
           </div>
-          <div className="scroll-indicator" aria-hidden="true">
-            <div className="scroll-line" />
-            <span>Scroll</span>
+          <div className="hero-footer-right label-caps">
+            TAMIL NADU, IN &nbsp; {formatTime(time)}
           </div>
         </motion.div>
       </section>
@@ -319,8 +321,7 @@ function App() {
       <section id="about" className="section" aria-label="About">
         <motion.div 
           className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
