@@ -106,18 +106,19 @@ const App = () => {
           <Text3DFlip secondaryChildren="ALLINALL">ADHITHAN</Text3DFlip>
         </a>
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
-          {['Work', 'Services', 'About', 'Process'].map((item, i) => (
+          {['Home', 'Work', 'Services', 'Contact'].map((item, i) => (
             <motion.li 
               key={item}
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 + i * 0.1 }}
             >
-              <a href={`#${item.toLowerCase()}`} className={item === 'Work' ? 'active' : ''}>
+              <a href={`#${item.toLowerCase()}`} className={item === 'Home' ? 'active' : ''}>
                 <Text3DFlip secondaryChildren={
+                  item === 'Home' ? 'Start' : 
+                  item === 'Work' ? 'Projects' : 
                   item === 'Services' ? 'Products' : 
-                  item === 'About' ? 'Story' : 
-                  item === 'Process' ? 'Methods' : 
+                  item === 'Contact' ? 'Reach Out' : 
                   undefined
                 }>
                   {item}

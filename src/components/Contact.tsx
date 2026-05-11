@@ -13,11 +13,11 @@ const Contact = () => {
         Let's Build It.
       </motion.h2>
       <div className="cta-actions">
-        <a href="mailto:hello@studio.com" className="btn-primary" id="cta-email-btn">
-          hello@studio.com
+        <a href="mailto:rmadhithan20012002@gmail.com" className="btn-primary" id="cta-email-btn">
+          Mail Me
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noreferrer" className="btn-secondary" id="cta-twitter-btn">
-          Follow on X
+        <a href="https://www.instagram.com/everyday.standards/" target="_blank" rel="noreferrer" className="btn-secondary" id="cta-insta-btn">
+          Insta DM
         </a>
       </div>
     </section>
