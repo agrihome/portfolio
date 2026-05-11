@@ -92,7 +92,7 @@ function App() {
     <>
       {/* ── NAV ─────────────────────────────── */}
       <motion.nav 
-        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-12 py-5 bg-[var(--nav-bg)] backdrop-blur-md"
+        className="fixed top-0 left-10 right-10 z-50 flex items-center justify-between px-10 py-6 bg-[var(--nav-bg)] backdrop-blur-md"
         role="navigation" 
         aria-label="Main navigation"
         initial={{ y: -20, opacity: 0 }}
@@ -139,7 +139,7 @@ function App() {
 
       {/* ── HERO ────────────────────────────── */}
       <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section">
-        <div className="hero-center">
+        <div className="hero-center relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
