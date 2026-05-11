@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'motion/react'
+import { motion, useScroll, useTransform, useSpring } from 'motion/react'
 import Text3DFlip from './ui/text-3d-flip'
 
 const SERVICES = [
@@ -31,22 +31,35 @@ const ServiceItem = ({ name }: { name: string }) => {
     offset: ["start end", "end start"]
   })
 
-  // Calculate opacity and color based on how close the item is to the center of the viewport
-  const opacity = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], [0.1, 1, 1, 0.1])
-  const scale = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], [0.85, 1, 1, 0.85])
-  const blur = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], ["blur(4px)", "blur(0px)", "blur(0px)", "blur(4px)"])
-  const color = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], ["var(--ink)", "#ec4899", "#ec4899", "var(--ink)"])
+  // Apply a spring physics layer to the raw scroll data to make the effect buttery smooth
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 50,
+    damping: 20,
+    restDelta: 0.001
+  })
+
+  // A single, strictly synchronized range for all properties
+  // The 'active' window is sharply defined between 0.46 and 0.54
+  const range = [0, 0.45, 0.46, 0.54, 0.55, 1]
+  
+  const opacity = useTransform(smoothProgress, range, [0.2, 0.2, 1, 1, 0.2, 0.2])
+  const scale = useTransform(smoothProgress, range, [0.9, 0.9, 1.05, 1.05, 0.9, 0.9])
+  const backgroundColor = useTransform(smoothProgress, range, ["transparent", "transparent", "#ec4899", "#ec4899", "transparent", "transparent"])
+  const textColor = useTransform(smoothProgress, range, ["var(--ink)", "var(--ink)", "var(--canvas)", "var(--canvas)", "var(--ink)", "var(--ink)"])
 
   return (
     <motion.div 
       ref={ref}
-      style={{ opacity, scale, filter: blur, color }}
-      className="service-item w-full flex items-center justify-center py-12 md:py-20 cursor-default"
+      style={{ opacity, scale, backgroundColor }}
+      className="service-item w-full flex items-center justify-center py-16 md:py-24 cursor-default transition-colors duration-200 rounded-2xl"
     >
       <div className="flex items-center gap-6 md:gap-16">
-        <span className="font-display text-5xl md:text-9xl font-bold uppercase tracking-tighter transition-colors duration-500">
+        <motion.span 
+          style={{ color: textColor }}
+          className="font-display text-5xl md:text-9xl font-bold uppercase tracking-tighter transition-colors duration-200"
+        >
           {name}
-        </span>
+        </motion.span>
       </div>
     </motion.div>
   )
