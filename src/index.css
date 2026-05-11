@@ -760,7 +760,7 @@ body {
    ================================================ */
 
 .services-list {
-  border-top: 1px solid var(--color-outline-variant);
+  /*  */
 }
 
 .service-item {
@@ -768,7 +768,6 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 32px var(--spacing-margin-desktop);
-  border-bottom: 1px solid var(--color-outline-variant);
   cursor: default;
   transition: background 250ms ease;
   position: relative;
@@ -820,7 +819,7 @@ body {
 
 .service-name {
   font-family: var(--font-display);
-  font-size: 36px;
+  /* font-size: 36px; */
   letter-spacing: 0.02em;
   color: var(--ink);
   transition: letter-spacing 300ms ease;

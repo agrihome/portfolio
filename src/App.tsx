@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
-import './index.css'
 import cursorFollowImg from './assets/cursor follow.jpeg'
 import Text3DFlip from './components/ui/text-3d-flip'
 import Work from './components/Work'
