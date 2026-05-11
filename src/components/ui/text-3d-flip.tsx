@@ -59,6 +59,7 @@ const DEFAULT_TRANSITION: ValueAnimationTransition = {
 
 interface Text3DFlipProps {
   children: React.ReactNode
+  secondaryChildren?: React.ReactNode
   as?: ElementType
   className?: string
   textClassName?: string
@@ -71,6 +72,7 @@ interface Text3DFlipProps {
 
 const Text3DFlip = ({
   children,
+  secondaryChildren,
   as: ElementTag = "p",
   className,
   textClassName,
@@ -104,13 +106,32 @@ const Text3DFlip = ({
     }
   }, [children])
 
+  const secondaryText = useMemo(() => {
+    if (!secondaryChildren) return null
+    try {
+      return extractTextFromChildren(secondaryChildren)
+    } catch {
+      return ""
+    }
+  }, [secondaryChildren])
+
   const characters = useMemo(() => {
-    const words = text.split(" ")
-    return words.map((word, i) => ({
-      characters: splitIntoCharacters(word),
-      needsSpace: i !== words.length - 1,
-    }))
-  }, [text])
+    const primaryWords = text.split(" ")
+    const secondaryWords = secondaryText ? secondaryText.split(" ") : []
+
+    return primaryWords.map((word, i) => {
+      const primaryChars = splitIntoCharacters(word)
+      const secondaryChars = secondaryWords[i] ? splitIntoCharacters(secondaryWords[i]) : []
+      
+      return {
+        characters: primaryChars.map((char, j) => ({
+          primary: char,
+          secondary: secondaryChars[j] || char
+        })),
+        needsSpace: i !== primaryWords.length - 1,
+      }
+    })
+  }, [text, secondaryText])
 
   const charOffsets = useMemo(() => {
     const offsets = [0]
@@ -186,10 +207,11 @@ const Text3DFlip = ({
 
       {characters.map((wordObj, wordIndex) => (
         <span key={wordIndex} className="inline-flex">
-          {wordObj.characters.map((char, charIndex) => (
+          {wordObj.characters.map((charObj, charIndex) => (
             <CharBox
               key={charOffsets[wordIndex] + charIndex}
-              char={char}
+              primaryChar={charObj.primary}
+              secondaryChar={charObj.secondary}
               textClassName={textClassName}
               flipTextClassName={flipTextClassName}
               rotateDirection={rotateDirection}
@@ -203,7 +225,8 @@ const Text3DFlip = ({
 }
 
 interface CharBoxProps {
-  char: string
+  primaryChar: string
+  secondaryChar: string
   textClassName?: string
   flipTextClassName?: string
   rotateDirection: "top" | "right" | "bottom" | "left"
@@ -233,7 +256,8 @@ const CONTAINER_TRANSFORMS = {
 
 const CharBox = memo(
   ({
-    char,
+    primaryChar,
+    secondaryChar,
     textClassName,
     flipTextClassName,
     rotateDirection,
@@ -246,7 +270,7 @@ const CharBox = memo(
         className={cn("relative h-[1lh] backface-hidden", textClassName)}
         style={{ transform: FRONT_FACE_TRANSFORMS[rotateDirection] }}
       >
-        {char}
+        {primaryChar}
       </span>
       <span
         className={cn(
@@ -255,7 +279,7 @@ const CharBox = memo(
         )}
         style={{ transform: SECOND_FACE_TRANSFORMS[rotateDirection] }}
       >
-        {char}
+        {secondaryChar}
       </span>
     </span>
   )

@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import './index.css'
 import appMockup from './assets/hero.png'
 import cursorFollowImg from './assets/cursor follow.jpeg'
+import Text3DFlip from './components/ui/text-3d-flip'
 
 const MARQUEE_ITEMS = [
   'Mobile App Development',
@@ -121,7 +122,9 @@ function App() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <a href="/" className="nav-logo" aria-label="Home">STUDIO</a>
+        <a href="/" className="nav-logo" aria-label="Home">
+          <Text3DFlip secondaryChildren="ALLINALL">ADHITHAN</Text3DFlip>
+        </a>
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
           {['Work', 'Services', 'About', 'Process'].map((item, i) => (
             <motion.li 
@@ -130,7 +133,16 @@ function App() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 + i * 0.1 }}
             >
-              <a href={`#${item.toLowerCase()}`} className={item === 'Work' ? 'active' : ''}>{item}</a>
+              <a href={`#${item.toLowerCase()}`} className={item === 'Work' ? 'active' : ''}>
+                <Text3DFlip secondaryChildren={
+                  item === 'Services' ? 'Products' : 
+                  item === 'About' ? 'Story' : 
+                  item === 'Process' ? 'Methods' : 
+                  undefined
+                }>
+                  {item}
+                </Text3DFlip>
+              </a>
             </motion.li>
           ))}
         </ul>
@@ -155,7 +167,9 @@ function App() {
               )}
             </motion.div>
           </button>
-          <a href="#contact" className="nav-cta" id="nav-cta-link">Let's Talk</a>
+          <a href="#contact" className="nav-cta" id="nav-cta-link">
+            <Text3DFlip>Let's Talk</Text3DFlip>
+          </a>
         </div>
       </motion.nav>
 
