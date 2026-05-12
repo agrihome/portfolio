@@ -6,53 +6,6 @@ import Work from './components/Work'
 import Services from './components/Services'
 import Contact from './components/Contact'
 
-const MARQUEE_ITEMS = [
-  'Mobile App Development',
-  'App Store Optimization',
-  'Growth Marketing',
-  'iOS & Android',
-  'Product Strategy',
-  'User Acquisition',
-  'React Native',
-  'Swift & Kotlin',
-]
-
-
-const STATS = [
-  { number: '12+', label: 'Apps Shipped' },
-  { number: '2M+', label: 'Total Downloads' },
-  { number: '4.8★', label: 'Avg App Rating' },
-  { number: '8', label: 'Active Products' },
-]
-
-
-const PROCESS = [
-  {
-    num: '01',
-    title: 'Discover',
-    desc: 'Deep research into the problem space, target users, and competitive landscape. No assumptions.',
-  },
-  {
-    num: '02',
-    title: 'Design',
-    desc: 'Architecture, wireframes, and pixel-perfect UI. Every interaction is intentional.',
-  },
-  {
-    num: '03',
-    title: 'Build',
-    desc: 'Clean, performant native or cross-platform code. Ship fast without cutting corners.',
-  },
-  {
-    num: '04',
-    title: 'Grow',
-    desc: 'ASO, paid acquisition, organic content, and analytics. Growth is a system, not luck.',
-  },
-]
-
-const TAGS = [
-  'iOS', 'Android', 'React Native', 'Swift', 'Kotlin', 'Flutter',
-  'Firebase', 'Growth', 'ASO', 'Product Design',
-]
 
 const App = () => {
   const [time, setTime] = useState(new Date())

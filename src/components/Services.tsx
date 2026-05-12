@@ -1,5 +1,3 @@
-import { motion } from 'motion/react'
-import Text3DFlip from './ui/text-3d-flip'
 
 const SERVICES = [
   { num: '01', name: 'Mobile app development' },
