@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import cursorFollowImg from './assets/cursor follow.jpeg'
 import Text3DFlip from './components/ui/text-3d-flip'
-import Work from './components/Work'
-import Services from './components/Services'
 import Contact from './components/Contact'
 
 
@@ -59,7 +57,7 @@ const App = () => {
           <Text3DFlip secondaryChildren="ALLINALL">ADHITHAN</Text3DFlip>
         </a>
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
-          {['Home', 'Work', 'Services', 'Contact'].map((item, i) => (
+          {['Home', 'Contact'].map((item, i) => (
             <motion.li 
               key={item}
               initial={{ y: -10, opacity: 0 }}
@@ -69,8 +67,6 @@ const App = () => {
               <a href={`#${item.toLowerCase()}`} className={item === 'Home' ? 'active' : ''}>
                 <Text3DFlip secondaryChildren={
                   item === 'Home' ? 'Start' : 
-                  item === 'Work' ? 'Projects' : 
-                  item === 'Services' ? 'Products' : 
                   item === 'Contact' ? 'Reach Out' : 
                   undefined
                 }>
@@ -169,9 +165,6 @@ const App = () => {
         </motion.div>
       </section>
 
-      <Work />
-      <Services />
-      
       <Contact />
 
     </>
