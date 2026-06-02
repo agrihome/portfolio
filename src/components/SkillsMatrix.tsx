@@ -17,8 +17,6 @@ const CATEGORIES = [
       'Interaction Design',
       'Information Architecture',
     ],
-    glow: 'rgba(251, 191, 36, 0.4)', // Gold
-    gradientColor: '#fbbf24',
   },
   {
     title: 'ENGINEERING',
@@ -34,8 +32,6 @@ const CATEGORIES = [
       'State Management',
       'Cross-Platform Dev',
     ],
-    glow: 'rgba(245, 158, 11, 0.4)', // Amber
-    gradientColor: '#f59e0b',
   },
   {
     title: 'GROWTH & INTELLIGENCE',
@@ -51,8 +47,6 @@ const CATEGORIES = [
       'Motion Graphics',
       'Video Editing',
     ],
-    glow: 'rgba(250, 204, 21, 0.4)', // Yellow
-    gradientColor: '#facc15',
   },
 ]
 
@@ -96,9 +90,7 @@ const SkillsMatrix = () => {
             className="flex w-full"
           >
             <MagicCard
-              className="glass-panel flex-1 relative overflow-hidden flex flex-col p-6 sm:p-8 md:p-10 min-h-[460px] group"
-              gradientColor={cat.gradientColor}
-              gradientOpacity={0.15}
+              className="flex-1 flex flex-col p-6 sm:p-8 md:p-10 min-h-[460px] group"
             >
               {/* Category header */}
               <div className="mb-10 z-10">
