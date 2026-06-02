@@ -96,7 +96,7 @@ const App = () => {
           <img 
             src={cursorFollowImg} 
             alt="" 
-            className="w-full h-auto rounded-3xl shadow-[0_0_80px_rgba(251,191,36,0.5)] border-[4px] border-white/20" 
+            className="w-full h-auto rounded-3xl border-[4px] border-white/20 shadow-2xl" 
           />
         </motion.div>
 
