@@ -80,50 +80,17 @@ const MarketingShowcase = () => {
 
       {/* Glass card container */}
       <motion.div
-        className="glass-panel overflow-hidden flex flex-col"
+        className="glass-panel overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.3 }}
       >
-        {/* Project selector tabs */}
-        <div className="flex overflow-x-auto no-scrollbar border-b border-[var(--border-glass)]">
-          {PROJECTS.map((p, i) => (
-            <button
-              key={p.id}
-              onClick={() => setActiveProject(i)}
-              className="relative flex-1 min-w-[200px] px-6 py-6 flex items-center justify-center gap-3 transition-colors duration-300 group"
-            >
-              <span className={`text-xs font-bold transition-colors ${activeProject === i ? 'text-[var(--accent-gold)]' : 'text-white/30 group-hover:text-white/50'}`}>
-                {p.num}
-              </span>
-              <span className={`text-xs font-bold tracking-widest transition-colors ${activeProject === i ? 'text-white' : 'text-white/50 group-hover:text-white/80'}`}>
-                {p.title}
-              </span>
-              
-              {/* Active Tab indicator */}
-              {activeProject === i && (
-                <motion.div 
-                  layoutId="marketingTabIndicator"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-gold)] to-[var(--accent-amber)]"
-                />
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Project detail */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, scale: 0.98, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, scale: 0.98, filter: 'blur(4px)', transition: { duration: 0.2 } }}
-            transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
-            className="grid grid-cols-1 lg:grid-cols-2"
-          >
-            {/* Image panel */}
-            <div className="relative overflow-hidden bg-black/40 p-8 lg:p-16 flex items-center justify-center min-h-[400px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          
+          {/* Left: Image panel */}
+          <div className="relative overflow-hidden bg-black/40 p-8 lg:p-16 flex items-center justify-center min-h-[400px]">
+            <AnimatePresence mode="wait">
               {/* Parallax Image */}
               <motion.img
                 key={project.image}
@@ -131,78 +98,106 @@ const MarketingShowcase = () => {
                 alt={project.title}
                 initial={{ scale: 1.1, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 1.1, opacity: 0, transition: { duration: 0.2 } }}
                 transition={{ duration: 1, ease: [0.19, 1.0, 0.22, 1.0] }}
-                className="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl border border-white/10"
+                className="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl border border-white/10 relative z-10"
               />
-              
-              {/* Floating Tag */}
+            </AnimatePresence>
+            
+            {/* Floating Tag */}
+            <AnimatePresence mode="wait">
               <motion.div
+                key={project.tag}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
                 transition={{ delay: 0.4, type: "spring", bounce: 0.5 }}
-                className="absolute bottom-8 left-8 bg-black/60 backdrop-blur-xl border border-white/20 text-white text-[10px] font-bold tracking-widest px-4 py-2 rounded-full uppercase shadow-2xl"
+                className="absolute bottom-8 left-8 bg-black/60 backdrop-blur-xl border border-white/20 text-white text-[10px] font-bold tracking-widest px-4 py-2 rounded-full uppercase shadow-2xl z-20"
               >
                 {project.tag}
               </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right: Tab buttons & details */}
+          <div className="flex flex-col border-t lg:border-t-0 lg:border-l border-[var(--border-glass)]">
+            
+            {/* Tab buttons */}
+            <div className="flex flex-col border-b border-[var(--border-glass)]">
+              {PROJECTS.map((p, i) => (
+                <button
+                  key={p.id}
+                  onClick={() => setActiveProject(i)}
+                  className={`flex items-center gap-4 px-8 py-5 text-left transition-colors duration-300 ${
+                    activeProject === i 
+                      ? 'bg-white/10 text-white' 
+                      : 'text-white/40 hover:bg-white/5 hover:text-white/80'
+                  } ${i < PROJECTS.length - 1 ? 'border-b border-[var(--border-glass)]' : ''}`}
+                >
+                  <span className="w-6 opacity-50 text-xs font-bold">{p.num}</span>
+                  <span className="text-xs font-bold tracking-widest">{p.title}</span>
+                  {activeProject === i && (
+                    <motion.span 
+                      layoutId="marketingTabIndicator"
+                      className="ml-auto w-2 h-2 rounded-full bg-[var(--accent-gold)] shadow-[0_0_10px_var(--accent-gold)]" 
+                    />
+                  )}
+                </button>
+              ))}
             </div>
 
             {/* Info panel */}
-            <div className="p-10 lg:p-16 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-[var(--border-glass)]">
-              <motion.h3
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
-                className="text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-6"
-              >
-                {project.title}
-              </motion.h3>
+            <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
+                  <p className="body-md mb-8">{project.description}</p>
 
-              <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.5, type: "spring", bounce: 0.4 }}
-                className="text-[16px] leading-[1.7] text-white/60 mb-10"
-              >
-                {project.description}
-              </motion.p>
+                  {/* Skill chips */}
+                  <div className="flex flex-wrap gap-2 mb-10">
+                    {project.skills.map((skill, i) => (
+                      <motion.span 
+                        key={skill} 
+                        className="chip"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 + (i * 0.05), type: "spring" }}
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
 
-              {/* Skill chips */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex flex-wrap gap-2 mb-12"
-              >
-                {project.skills.map((skill, i) => (
-                  <motion.span 
-                    key={skill} 
-                    className="chip"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + (i * 0.05), type: "spring" }}
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </motion.div>
-
-              {/* Action links */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="flex gap-4 flex-wrap"
-              >
-                {project.links.map((link) => (
-                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="glass-button">
-                    {link.label}
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                  </a>
-                ))}
-              </motion.div>
+                  {/* Action links */}
+                  <div className="flex gap-4 flex-wrap">
+                    {project.links.map((link) => (
+                      <motion.a 
+                        key={link.label} 
+                        href={link.href} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="glass-button"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                      >
+                        {link.label}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                      </motion.a>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
-          </motion.div>
-        </AnimatePresence>
+            
+          </div>
+        </div>
       </motion.div>
     </section>
   )
