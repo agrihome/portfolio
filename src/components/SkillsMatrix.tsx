@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
+import { MagicCard } from './ui/magic-card'
 
 const CATEGORIES = [
   {
@@ -17,6 +18,7 @@ const CATEGORIES = [
       'Information Architecture',
     ],
     glow: 'rgba(251, 191, 36, 0.4)', // Gold
+    gradientColor: '#fbbf24',
   },
   {
     title: 'ENGINEERING',
@@ -33,6 +35,7 @@ const CATEGORIES = [
       'Cross-Platform Dev',
     ],
     glow: 'rgba(245, 158, 11, 0.4)', // Amber
+    gradientColor: '#f59e0b',
   },
   {
     title: 'GROWTH & INTELLIGENCE',
@@ -49,6 +52,7 @@ const CATEGORIES = [
       'Video Editing',
     ],
     glow: 'rgba(250, 204, 21, 0.4)', // Yellow
+    gradientColor: '#facc15',
   },
 ]
 
@@ -89,49 +93,48 @@ const SkillsMatrix = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: catIdx * 0.1 }}
-            className="glass-panel relative overflow-hidden flex flex-col p-6 sm:p-8 md:p-10 min-h-[460px] group"
+            className="flex w-full"
           >
-            {/* Dynamic hover glow */}
-            <motion.div 
-              className="absolute -top-32 -right-32 w-64 h-64 rounded-full blur-[80px] pointer-events-none transition-opacity duration-500"
-              style={{ background: cat.glow }}
-              animate={{ opacity: hoveredCategory === catIdx ? 1 : 0 }}
-            />
+            <MagicCard
+              className="glass-panel flex-1 relative overflow-hidden flex flex-col p-6 sm:p-8 md:p-10 min-h-[460px] group"
+              gradientColor={cat.gradientColor}
+              gradientOpacity={0.15}
+            >
+              {/* Category header */}
+              <div className="mb-10 z-10">
+                <span className="text-xs font-bold tracking-[0.2em] text-white/30 block mb-3 group-hover:text-white/80 transition-colors">
+                  0{catIdx + 1}
+                </span>
+                <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/50 transition-all">
+                  {cat.title}
+                </h3>
+              </div>
 
-            {/* Category header */}
-            <div className="mb-10 z-10">
-              <span className="text-xs font-bold tracking-[0.2em] text-white/30 block mb-3 group-hover:text-white/80 transition-colors">
-                0{catIdx + 1}
-              </span>
-              <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/50 transition-all">
-                {cat.title}
-              </h3>
-            </div>
-
-            {/* Skills list */}
-            <div className="flex flex-col gap-0 z-10 flex-1">
-              {cat.skills.map((skill, skillIdx) => (
-                <motion.div
-                  key={skill}
-                  className="flex items-center justify-between py-3 border-b border-white/5 group-hover:border-white/10 transition-colors last:border-0"
-                  animate={{ 
-                    x: hoveredCategory === catIdx ? 10 : 0,
-                    opacity: hoveredCategory === catIdx ? 1 : 0.7 
-                  }}
-                  transition={{ 
-                    duration: 0.3, 
-                    delay: hoveredCategory === catIdx ? skillIdx * 0.03 : 0 
-                  }}
-                >
-                  <span className="text-[13px] font-medium text-white/80 group-hover:text-white">
-                    {skill}
-                  </span>
-                  <span className="text-[10px] font-bold tracking-[0.1em] text-white/20 group-hover:text-white/40">
-                    {String(skillIdx + 1).padStart(2, '0')}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+              {/* Skills list */}
+              <div className="flex flex-col gap-0 z-10 flex-1">
+                {cat.skills.map((skill, skillIdx) => (
+                  <motion.div
+                    key={skill}
+                    className="flex items-center justify-between py-3 border-b border-white/5 group-hover:border-white/10 transition-colors last:border-0"
+                    animate={{ 
+                      x: hoveredCategory === catIdx ? 10 : 0,
+                      opacity: hoveredCategory === catIdx ? 1 : 0.7 
+                    }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: hoveredCategory === catIdx ? skillIdx * 0.03 : 0 
+                    }}
+                  >
+                    <span className="text-[13px] font-medium text-white/80 group-hover:text-white">
+                      {skill}
+                    </span>
+                    <span className="text-[10px] font-bold tracking-[0.1em] text-white/20 group-hover:text-white/40">
+                      {String(skillIdx + 1).padStart(2, '0')}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </MagicCard>
           </motion.div>
         ))}
       </motion.div>
