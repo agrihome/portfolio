@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
 import youtubeMockup from '../assets/YouTube.jpg'
-import evWebsiteMockup from '../assets/ev-website.png'
+import evWebsiteMockup from '../assets/website.png'
 import instaMockup from '../assets/Instagram.jpg'
 import xMockup from '../assets/X.jpg'
 
