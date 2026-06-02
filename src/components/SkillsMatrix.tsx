@@ -16,7 +16,7 @@ const CATEGORIES = [
       'Interaction Design',
       'Information Architecture',
     ],
-    glow: 'rgba(147, 51, 234, 0.4)', // Purple
+    glow: 'rgba(251, 191, 36, 0.4)', // Gold
   },
   {
     title: 'ENGINEERING',
@@ -32,7 +32,7 @@ const CATEGORIES = [
       'State Management',
       'Cross-Platform Dev',
     ],
-    glow: 'rgba(59, 130, 246, 0.4)', // Blue
+    glow: 'rgba(245, 158, 11, 0.4)', // Amber
   },
   {
     title: 'GROWTH & INTELLIGENCE',
@@ -48,7 +48,7 @@ const CATEGORIES = [
       'Motion Graphics',
       'Video Editing',
     ],
-    glow: 'rgba(236, 72, 153, 0.4)', // Pink
+    glow: 'rgba(250, 204, 21, 0.4)', // Yellow
   },
 ]
 

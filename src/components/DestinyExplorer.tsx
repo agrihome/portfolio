@@ -99,7 +99,7 @@ const DestinyExplorer = () => {
           {/* Left: Phone mockup */}
           <div className="relative flex items-center justify-center p-12 lg:p-20 bg-black/20">
             {/* Background glow behind phone */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] bg-purple-600/30 blur-[80px] rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] bg-amber-500/30 blur-[80px] rounded-full" />
             
             {/* Phone frame */}
             <motion.div
@@ -180,7 +180,7 @@ const DestinyExplorer = () => {
                   {activeTab === i && (
                     <motion.span 
                       layoutId="activeTabIndicator"
-                      className="ml-auto w-2 h-2 rounded-full bg-[var(--accent-purple)] shadow-[0_0_10px_var(--accent-purple)]" 
+                      className="ml-auto w-2 h-2 rounded-full bg-[var(--accent-gold)] shadow-[0_0_10px_var(--accent-gold)]" 
                     />
                   )}
                 </button>

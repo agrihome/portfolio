@@ -19,9 +19,9 @@
   --text-secondary: rgba(255, 255, 255, 0.6);
   --text-muted: rgba(255, 255, 255, 0.4);
   
-  --accent-purple: #9333ea;
-  --accent-blue: #3b82f6;
-  --accent-pink: #ec4899;
+  --accent-gold: #fbbf24; /* amber-400 */
+  --accent-amber: #f59e0b; /* amber-500 */
+  --accent-yellow: #facc15; /* yellow-400 */
 
   /* ── Structural ── */
   --border-glass: rgba(255, 255, 255, 0.1);
@@ -66,8 +66,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-image: radial-gradient(circle at 50% -20%, rgba(147, 51, 234, 0.15), transparent 40%),
-                    radial-gradient(circle at 100% 50%, rgba(59, 130, 246, 0.1), transparent 50%);
+  background-image: radial-gradient(circle at 50% -20%, rgba(251, 191, 36, 0.15), transparent 40%),
+                    radial-gradient(circle at 100% 50%, rgba(245, 158, 11, 0.1), transparent 50%);
   background-attachment: fixed;
 }
 
@@ -115,7 +115,7 @@ body {
 }
 
 .text-gradient-vibrant {
-  background: linear-gradient(to right, #a855f7, #ec4899);
+  background: linear-gradient(to right, var(--accent-gold), var(--accent-amber));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -137,7 +137,7 @@ body {
 
 .glass-panel:hover {
   border-color: var(--border-glass-hover);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 24px rgba(147, 51, 234, 0.1);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 24px rgba(251, 191, 36, 0.15);
   transform: translateY(-4px);
 }
 

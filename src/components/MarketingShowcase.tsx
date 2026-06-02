@@ -94,7 +94,7 @@ const MarketingShowcase = () => {
               onClick={() => setActiveProject(i)}
               className="relative flex-1 min-w-[200px] px-6 py-6 flex items-center justify-center gap-3 transition-colors duration-300 group"
             >
-              <span className={`text-xs font-bold transition-colors ${activeProject === i ? 'text-[var(--accent-pink)]' : 'text-white/30 group-hover:text-white/50'}`}>
+              <span className={`text-xs font-bold transition-colors ${activeProject === i ? 'text-[var(--accent-gold)]' : 'text-white/30 group-hover:text-white/50'}`}>
                 {p.num}
               </span>
               <span className={`text-xs font-bold tracking-widest transition-colors ${activeProject === i ? 'text-white' : 'text-white/50 group-hover:text-white/80'}`}>
@@ -105,7 +105,7 @@ const MarketingShowcase = () => {
               {activeProject === i && (
                 <motion.div 
                   layoutId="marketingTabIndicator"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-purple)] to-[var(--accent-pink)]"
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-gold)] to-[var(--accent-amber)]"
                 />
               )}
             </button>

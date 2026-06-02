@@ -48,7 +48,7 @@ const App = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
       >
-        <a href="/" className="font-bold text-lg tracking-tight hover:text-[var(--accent-purple)] transition-colors">
+        <a href="/" className="font-bold text-lg tracking-tight hover:text-[var(--accent-gold)] transition-colors">
           ADHITHAN
         </a>
         <ul className="hidden md:flex items-center gap-8 list-none">
@@ -94,7 +94,7 @@ const App = () => {
       <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section" style={{ perspective: '1200px' }}>
         
         {/* Background glow effects */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-500/20 blur-[120px] rounded-full pointer-events-none" />
         
         {/* Cursor Following Image */}
         <motion.div
@@ -115,7 +115,7 @@ const App = () => {
           <img 
             src={cursorFollowImg} 
             alt="" 
-            className="w-full h-auto rounded-3xl shadow-[0_0_60px_rgba(147,51,234,0.3)] border border-white/10" 
+            className="w-full h-auto rounded-3xl shadow-[0_0_60px_rgba(251,191,36,0.3)] border border-white/10" 
           />
         </motion.div>
 
