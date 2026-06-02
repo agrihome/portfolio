@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { StarsBackground } from './animate-ui/components/backgrounds/stars'
 
 import onboardingImg from '../assets/onboarding.jpg'
 import homeRoutinesImg from '../assets/home routines.png'
@@ -97,9 +98,8 @@ const DestinyExplorer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           
           {/* Left: Phone mockup */}
-          <div className="relative flex items-center justify-center p-6 md:p-12 lg:p-20 bg-black/20 w-full overflow-hidden">
-            {/* Background glow behind phone */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] bg-amber-500/30 blur-[80px] rounded-full" />
+          <div className="relative flex items-center justify-center p-6 md:p-12 lg:p-20 w-full overflow-hidden">
+            <StarsBackground className="absolute inset-0 z-0" />
             
             {/* Phone frame */}
             <motion.div

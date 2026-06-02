@@ -18,7 +18,7 @@
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.6);
   --text-muted: rgba(255, 255, 255, 0.4);
-  
+
   --accent-gold: #fbbf24; /* amber-400 */
   --accent-amber: #f59e0b; /* amber-500 */
   --accent-yellow: #facc15; /* yellow-400 */
@@ -27,7 +27,7 @@
   --border-glass: rgba(255, 255, 255, 0.1);
   --border-glass-hover: rgba(255, 255, 255, 0.2);
   --bg-glass: rgba(20, 20, 20, 0.4);
-  
+
   /* ── Nav glassmorphism ── */
   --nav-bg: rgba(5, 5, 5, 0.6);
 
@@ -39,7 +39,6 @@
   --spacing-margin-desktop: 80px;
   --spacing-margin-mobile: 24px;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -188,5 +187,20 @@ body {
 @media (max-width: 768px) {
   .section-header {
     margin-bottom: 40px;
+  }
+}
+
+@theme inline {
+  --animate-shine: shine var(--duration) infinite linear;
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;
+    }
+  50% {
+    background-position: 100% 100%;
+    }
+  to {
+    background-position: 0% 0%;
+    }
   }
 }
