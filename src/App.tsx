@@ -160,7 +160,7 @@ const App = () => {
       </section>
 
       {/* ── SECTIONS ─────────────────────────── */}
-      <div className="flex flex-col gap-24 md:gap-32 pb-40 px-4 md:px-[var(--spacing-margin-desktop)] max-w-[1920px] mx-auto w-full">
+      <div className="flex flex-col gap-24 md:gap-32 pt-24 lg:pt-32 pb-40 px-4 md:px-[var(--spacing-margin-desktop)] max-w-[1920px] mx-auto w-full">
         <DestinyExplorer />
         <SkillsMatrix />
         <MarketingShowcase />
