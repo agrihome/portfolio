@@ -91,27 +91,7 @@ const App = () => {
       </motion.nav>
 
       {/* ── HERO ────────────────────────────── */}
-      <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section" style={{ perspective: '1200px' }}>
-        
-        {/* Animated Aurora Glows */}
-        <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-amber-500/20 blur-[120px] rounded-full pointer-events-none"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-            opacity: [0.5, 0.8, 0.5]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div 
-          className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-yellow-400/20 blur-[100px] rounded-full pointer-events-none"
-          animate={{ 
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
+      <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12 bg-black" aria-label="Hero section" style={{ perspective: '1200px' }}>
         
         {/* Cursor Following Image */}
         <motion.div

@@ -107,10 +107,6 @@ const DestinyExplorer = () => {
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              {/* Dynamic notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[24px] bg-black rounded-b-2xl z-20 flex justify-center items-center">
-                <div className="w-[40px] h-[6px] rounded-full bg-white/10" />
-              </div>
 
               <AnimatePresence mode="wait">
                 {tab.type === 'video' && tab.videoSrc ? (
