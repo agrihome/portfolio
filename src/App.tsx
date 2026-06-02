@@ -1,12 +1,45 @@
 import { useState, useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'motion/react'
 import cursorFollowImg from './assets/cursor follow.jpeg'
 import DestinyExplorer from './components/DestinyExplorer'
 import SkillsMatrix from './components/SkillsMatrix'
 import MarketingShowcase from './components/MarketingShowcase'
 import Contact from './components/Contact'
 
+const Preloader = ({ onLoaded }: { onLoaded: () => void }) => {
+  useEffect(() => {
+    const handleLoad = () => {
+      // Add a slight delay to ensure a smooth transition and minimum viewing time
+      setTimeout(() => onLoaded(), 800)
+    }
+
+    if (document.readyState === 'complete') {
+      handleLoad()
+    } else {
+      window.addEventListener('load', handleLoad)
+      return () => window.removeEventListener('load', handleLoad)
+    }
+  }, [onLoaded])
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center"
+      exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+    >
+      <motion.div
+        animate={{ opacity: [0.3, 1, 0.3], scale: [0.98, 1, 0.98] }}
+        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+        className="flex flex-col items-center justify-center"
+      >
+        <div className="w-12 h-12 rounded-full border-4 border-white/10 border-t-[var(--accent-gold)] animate-spin" />
+      </motion.div>
+    </motion.div>
+  )
+}
+
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const [theme] = useState<'dark'>('dark')
 
   const mouseX = useMotionValue(0)
@@ -38,11 +71,15 @@ const App = () => {
 
   return (
     <>
+      <AnimatePresence>
+        {isLoading && <Preloader onLoaded={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
       {/* ── NAV ─────────────────────────────── */}
-      <motion.nav 
+      <motion.nav
         className="fixed top-0 md:top-6 left-0 md:left-1/2 md:-translate-x-1/2 z-50 flex items-center justify-between px-6 md:px-8 py-4 md:rounded-full border-b md:border border-[var(--border-glass)] backdrop-blur-2xl shadow-2xl w-full md:w-[90%] max-w-[1200px]"
         style={{ background: 'var(--nav-bg)' }}
-        role="navigation" 
+        role="navigation"
         aria-label="Main navigation"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -53,7 +90,7 @@ const App = () => {
         </a>
         <ul className="hidden md:flex items-center gap-8 list-none">
           {['Home', 'Create', 'Build', 'Market'].map((item, i) => (
-            <motion.li 
+            <motion.li
               key={item}
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -75,7 +112,7 @@ const App = () => {
 
       {/* ── HERO ────────────────────────────── */}
       <section id="home" className="w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12 bg-black pt-32 pb-16 lg:h-screen lg:py-0" aria-label="Hero section" style={{ perspective: '1200px' }}>
-        
+
         {/* Cursor Following Image */}
         <motion.div
           className="absolute pointer-events-none z-0 hidden md:block"
@@ -92,10 +129,10 @@ const App = () => {
             zIndex: 5,
           }}
         >
-          <img 
-            src={cursorFollowImg} 
-            alt="" 
-            className="w-full h-auto rounded-3xl border-[4px] border-white/20 shadow-2xl" 
+          <img
+            src={cursorFollowImg}
+            alt=""
+            className="w-full h-auto rounded-3xl border-[4px] border-white/20 shadow-2xl"
           />
         </motion.div>
 
@@ -135,7 +172,7 @@ const App = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           className="mt-12 lg:absolute lg:bottom-12 lg:mt-0 left-1/2 lg:-translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
