@@ -11,7 +11,7 @@ const Contact = () => {
         transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
       >
         {/* Background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-600/20 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-amber-500/20 blur-[100px] rounded-full pointer-events-none" />
 
         <motion.h2
           className="text-[clamp(32px,8vw,80px)] font-extrabold leading-[1.1] tracking-tight mb-12 z-10"
@@ -31,11 +31,28 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <a href="mailto:rmadhithan20012002@gmail.com" className="glass-button text-lg px-8 py-4 bg-white text-black hover:bg-white/90">
-            Send an Email
+          <a href="mailto:rmadhithan20012002@gmail.com" className="glass-button text-lg px-8 py-4 bg-white text-black hover:bg-white/90 flex items-center gap-3">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Email Me
           </a>
-          <a href="https://www.instagram.com/everyday.standards/" target="_blank" rel="noreferrer" className="glass-button text-lg px-8 py-4">
-            Instagram DM
+          <a href="https://www.linkedin.com/in/adhithan-rm-a16600217/" target="_blank" rel="noreferrer" className="glass-button text-lg px-8 py-4 flex items-center gap-3">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://www.instagram.com/everyday.standards/" target="_blank" rel="noreferrer" className="glass-button text-lg px-8 py-4 flex items-center gap-3">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            Instagram
           </a>
         </motion.div>
       </motion.div>
