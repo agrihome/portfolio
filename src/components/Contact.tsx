@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { FlickeringGrid } from './ui/flickering-grid'
+import { BorderBeam } from './ui/border-beam'
 
 const Contact = () => {
   return (
@@ -11,6 +12,8 @@ const Contact = () => {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
       >
+        <BorderBeam size={250} duration={12} delay={9} colorFrom="#38bdf8" colorTo="#0ea5e9" borderWidth={1.5} />
+
         {/* Flickering Grid Background */}
         <FlickeringGrid
           className="absolute inset-0 z-0"
