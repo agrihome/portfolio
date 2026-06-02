@@ -1,4 +1,4 @@
-import { motion, MotionStyle, Transition } from "motion/react"
+import { motion, type Transition } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -84,7 +84,7 @@ export const BorderBeam = ({
             "--color-from": colorFrom,
             "--color-to": colorTo,
             ...style,
-          } as MotionStyle
+          } as any
         }
         initial={{ offsetDistance: `${initialOffset}%` }}
         animate={{
