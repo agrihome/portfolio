@@ -100,7 +100,7 @@ const MarketingShowcase = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 1.1, opacity: 0, transition: { duration: 0.2 } }}
                 transition={{ duration: 1, ease: [0.19, 1.0, 0.22, 1.0] }}
-                className="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl border border-white/10 relative z-10"
+                className="w-full max-w-[280px] aspect-[9/16] object-cover rounded-[30px] shadow-2xl border-[6px] border-white/10 relative z-10"
               />
             </AnimatePresence>
             
