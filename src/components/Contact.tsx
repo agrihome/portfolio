@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <section id="contact" className="w-full" aria-label="Contact">
       <motion.div
-        className="glass-panel flex flex-col items-center justify-center text-center p-16 md:p-32 overflow-hidden relative"
+        className="glass-panel flex flex-col items-center justify-center text-center p-8 md:p-16 lg:p-32 overflow-hidden relative"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -14,7 +14,7 @@ const Contact = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-600/20 blur-[100px] rounded-full pointer-events-none" />
 
         <motion.h2
-          className="text-[clamp(40px,8vw,80px)] font-extrabold leading-[1.1] tracking-tight mb-12 z-10"
+          className="text-[clamp(32px,8vw,80px)] font-extrabold leading-[1.1] tracking-tight mb-12 z-10"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

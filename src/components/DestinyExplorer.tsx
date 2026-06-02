@@ -97,13 +97,13 @@ const DestinyExplorer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           
           {/* Left: Phone mockup */}
-          <div className="relative flex items-center justify-center p-12 lg:p-20 bg-black/20">
+          <div className="relative flex items-center justify-center p-6 md:p-12 lg:p-20 bg-black/20 w-full overflow-hidden">
             {/* Background glow behind phone */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] bg-amber-500/30 blur-[80px] rounded-full" />
             
             {/* Phone frame */}
             <motion.div
-              className="relative w-[280px] h-[580px] rounded-[40px] border-[6px] border-white/10 shadow-2xl bg-black overflow-hidden z-10"
+              className="relative w-[240px] h-[497px] sm:w-[280px] sm:h-[580px] rounded-[30px] sm:rounded-[40px] border-[6px] border-white/10 shadow-2xl bg-black overflow-hidden z-10 shrink-0"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -188,7 +188,7 @@ const DestinyExplorer = () => {
             </div>
 
             {/* Detail panel */}
-            <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center">
+            <div className="p-6 md:p-8 lg:p-12 flex-1 flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={tab.id}

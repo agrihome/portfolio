@@ -84,7 +84,7 @@ const App = () => {
               )}
             </motion.div>
           </button>
-          <a href="#contact" className="glass-button">
+          <a href="#contact" className="glass-button hidden sm:inline-flex">
             Let's Talk
           </a>
         </div>
@@ -119,9 +119,9 @@ const App = () => {
           />
         </motion.div>
 
-        <div className="text-center relative z-10">
+        <div className="text-center relative z-10 w-full">
           <motion.h1
-            className="text-[clamp(60px,12vw,140px)] font-extrabold leading-[1.05] tracking-tight"
+            className="text-[clamp(40px,10vw,140px)] font-extrabold leading-[1.05] tracking-tight"
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, type: "spring", bounce: 0.3 }}
@@ -144,7 +144,7 @@ const App = () => {
       </section>
 
       {/* ── SECTIONS ─────────────────────────── */}
-      <div className="flex flex-col gap-32 pb-40 px-6 md:px-[var(--spacing-margin-desktop)] max-w-[1600px] mx-auto">
+      <div className="flex flex-col gap-24 md:gap-32 pb-40 px-4 md:px-[var(--spacing-margin-desktop)] max-w-[1920px] mx-auto w-full">
         <DestinyExplorer />
         <SkillsMatrix />
         <MarketingShowcase />

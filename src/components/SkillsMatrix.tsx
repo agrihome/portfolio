@@ -89,7 +89,7 @@ const SkillsMatrix = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: catIdx * 0.1 }}
-            className="glass-panel relative overflow-hidden flex flex-col p-8 md:p-10 min-h-[460px] group"
+            className="glass-panel relative overflow-hidden flex flex-col p-6 sm:p-8 md:p-10 min-h-[460px] group"
           >
             {/* Dynamic hover glow */}
             <motion.div 
