@@ -93,8 +93,25 @@ const App = () => {
       {/* ── HERO ────────────────────────────── */}
       <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section" style={{ perspective: '1200px' }}>
         
-        {/* Background glow effects */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-500/20 blur-[120px] rounded-full pointer-events-none" />
+        {/* Animated Aurora Glows */}
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-amber-500/20 blur-[120px] rounded-full pointer-events-none"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+            opacity: [0.5, 0.8, 0.5]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-yellow-400/20 blur-[100px] rounded-full pointer-events-none"
+          animate={{ 
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
         
         {/* Cursor Following Image */}
         <motion.div
@@ -106,40 +123,76 @@ const App = () => {
             rotateY,
             translateX: '-50%',
             translateY: '-50%',
-            width: '340px',
+            width: '380px',
             height: 'auto',
-            opacity: 0.6,
+            opacity: 0.85,
             transformStyle: 'preserve-3d',
+            zIndex: 5,
           }}
         >
           <img 
             src={cursorFollowImg} 
             alt="" 
-            className="w-full h-auto rounded-3xl shadow-[0_0_60px_rgba(251,191,36,0.3)] border border-white/10" 
+            className="w-full h-auto rounded-3xl shadow-[0_0_80px_rgba(251,191,36,0.5)] border-[4px] border-white/20" 
           />
         </motion.div>
 
-        <div className="text-center relative z-10 w-full">
-          <motion.h1
-            className="text-[clamp(40px,10vw,140px)] font-extrabold leading-[1.05] tracking-tight"
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.3 }}
-          >
-            I DESIGN <br />
-            <span className="text-gradient-vibrant">BUILD</span>, & <br />
-            MARKET <br />
-            PRODUCTS.
-          </motion.h1>
+        <div className="text-center relative z-10 w-full flex flex-col items-center">
+          <div className="text-[clamp(40px,10vw,140px)] font-extrabold leading-[1.05] tracking-tight flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotateX: 45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+            >
+              I DESIGN
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotateX: 45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, type: "spring", bounce: 0.4 }}
+            >
+              <span className="text-gradient-vibrant">BUILD</span>, &
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotateX: 45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
+            >
+              MARKET
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotateX: 45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
+            >
+              PRODUCTS.
+            </motion.div>
+          </div>
+
           <motion.p
-            className="mt-8 text-lg text-[var(--text-secondary)] max-w-lg mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            className="mt-10 text-lg md:text-xl text-[var(--text-secondary)] max-w-lg mx-auto font-medium"
+            initial={{ opacity: 0, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, filter: 'blur(0px)' }}
+            transition={{ delay: 0.6, duration: 1 }}
           >
             Elevating ideas into premium digital experiences through deep engineering and striking design.
           </motion.p>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+        >
+          <span className="text-[10px] uppercase tracking-widest font-bold">Scroll to explore</span>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-[1px] h-12 bg-gradient-to-b from-[var(--accent-gold)] to-transparent"
+          />
+        </motion.div>
 
       </section>
 

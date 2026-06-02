@@ -28,7 +28,7 @@ const PROJECTS = [
     image: youtubeMockup,
     skills: ['Video Editing', 'Motion Graphics', 'Content Strategy', 'Scripting'],
     links: [
-      { label: 'Watch Shorts', href: 'https://www.youtube.com/@everyday.standards/shorts', icon: 'yt' },
+      { label: 'Watch Shorts', href: 'https://www.youtube.com/@everyday.standards', icon: 'yt' },
     ],
   },
   {
@@ -40,7 +40,7 @@ const PROJECTS = [
     image: xMockup,
     skills: ['Copywriting', 'Community Building', 'Networking', 'Thought Leadership'],
     links: [
-      { label: 'View Profile', href: '#', icon: 'x' },
+      { label: 'View Profile', href: 'https://x.com/evdaystds', icon: 'x' },
     ],
   },
   {
