@@ -70,267 +70,151 @@ const DestinyExplorer = () => {
   const tab = TABS[activeTab]
 
   return (
-    <section
-      id="create"
-      className="py-40 w-full"
-      aria-label="Destiny App Explorer"
-    >
+    <section id="create" className="w-full" aria-label="Destiny App Explorer">
       {/* Section header */}
       <motion.div 
         className="section-header" 
-        style={{ padding: '0 var(--spacing-margin-desktop)' }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div>
-          <span className="label-caps" style={{ display: 'block', marginBottom: 12 }}>
-            01 / CREATE
-          </span>
-          <h2 className="headline-lg tracking-tighter">DESTINY</h2>
-          <p className="body-md" style={{ color: 'var(--ink-muted)', marginTop: 8, maxWidth: 480 }}>
-            A habit builder and long-term goal planning app. Structured paths, milestones, tasks, routines, and AI-powered insights.
-          </p>
-        </div>
+        <span className="label-caps text-gradient-vibrant">01 / CREATE</span>
+        <h2 className="headline-lg">DESTINY</h2>
+        <p className="body-md max-w-xl">
+          A habit builder and long-term goal planning app. Structured paths, milestones, tasks, routines, and AI-powered insights.
+        </p>
       </motion.div>
 
-      {/* Explorer grid */}
+      {/* Explorer glass card */}
       <motion.div
-        className="destiny-explorer-grid"
+        className="glass-panel overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '1px',
-          background: 'var(--color-outline-variant)',
-          borderTop: '1px solid var(--color-outline-variant)',
-          borderBottom: '1px solid var(--color-outline-variant)',
-          marginTop: 64,
-        }}
+        transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.3 }}
       >
-        {/* Left: Phone mockup */}
-        <div
-          style={{
-            background: 'var(--canvas)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '64px 48px',
-            position: 'relative',
-          }}
-        >
-          {/* Phone frame */}
-          <div
-            style={{
-              width: 280,
-              height: 580,
-              border: '1px solid var(--ink)',
-              position: 'relative',
-              overflow: 'hidden',
-              flexShrink: 0,
-            }}
-          >
-            {/* Dynamic notch */}
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 120,
-                height: 24,
-                background: 'var(--canvas)',
-                borderBottomLeftRadius: 0,
-                borderBottomRightRadius: 0,
-                zIndex: 10,
-                borderBottom: '1px solid var(--color-outline-variant)',
-                borderLeft: '1px solid var(--color-outline-variant)',
-                borderRight: '1px solid var(--color-outline-variant)',
-              }}
-            />
-
-            <AnimatePresence mode="wait">
-              {tab.type === 'video' && tab.videoSrc ? (
-                <motion.video
-                  key="video"
-                  src={tab.videoSrc}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              ) : (
-                <motion.img
-                  key={tab.id}
-                  src={tab.image}
-                  alt={tab.label}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Floating secondary analytics thumbnails */}
-          {tab.id === 'analytics' && tab.secondaryImages && (
-            <div
-              style={{
-                position: 'absolute',
-                right: 32,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 12,
-              }}
-            >
-              {tab.secondaryImages.map((img, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + i * 0.15, duration: 0.5 }}
-                  style={{
-                    width: 100,
-                    height: 180,
-                    border: '1px solid var(--color-outline-variant)',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <img
-                    src={img}
-                    alt="Analytics view"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Right: Tab details */}
-        <div style={{ background: 'var(--canvas)', display: 'flex', flexDirection: 'column' }}>
-          {/* Tab buttons */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              borderBottom: '1px solid var(--color-outline-variant)',
-            }}
-          >
-            {TABS.map((t, i) => (
-              <button
-                key={t.id}
-                onClick={() => setActiveTab(i)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 16,
-                  padding: '16px 32px',
-                  background: activeTab === i ? 'var(--canvas-inv)' : 'transparent',
-                  color: activeTab === i ? 'var(--ink-inv)' : 'var(--ink-muted)',
-                  border: 'none',
-                  borderBottom: i < TABS.length - 1 ? '1px solid var(--color-outline-variant)' : 'none',
-                  cursor: 'pointer',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase' as const,
-                  textAlign: 'left' as const,
-                  transition: 'background 200ms ease, color 200ms ease',
-                  width: '100%',
-                }}
-              >
-                <span style={{ width: 24, opacity: 0.6 }}>{t.num}</span>
-                <span>{t.label}</span>
-                <span style={{ marginLeft: 'auto', fontSize: 16 }}>
-                  {activeTab === i ? '→' : ''}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Detail panel */}
-          <AnimatePresence mode="wait">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          
+          {/* Left: Phone mockup */}
+          <div className="relative flex items-center justify-center p-12 lg:p-20 bg-black/20">
+            {/* Background glow behind phone */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] bg-purple-600/30 blur-[80px] rounded-full" />
+            
+            {/* Phone frame */}
             <motion.div
-              key={tab.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              style={{ padding: '40px 32px', flex: 1 }}
+              className="relative w-[280px] h-[580px] rounded-[40px] border-[6px] border-white/10 shadow-2xl bg-black overflow-hidden z-10"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 28,
-                  letterSpacing: '0.02em',
-                  color: 'var(--ink)',
-                  textTransform: 'uppercase',
-                  marginBottom: 16,
-                }}
-              >
-                {tab.headline}
-              </h3>
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 13,
-                  lineHeight: '22px',
-                  color: 'var(--ink-muted)',
-                  marginBottom: 32,
-                }}
-              >
-                {tab.description}
-              </p>
+              {/* Dynamic notch */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[24px] bg-black rounded-b-2xl z-20 flex justify-center items-center">
+                <div className="w-[40px] h-[6px] rounded-full bg-white/10" />
+              </div>
 
-              {/* Skill chips */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {tab.skills.map((skill) => (
-                  <span key={skill} className="chip">
-                    {skill}
-                  </span>
+              <AnimatePresence mode="wait">
+                {tab.type === 'video' && tab.videoSrc ? (
+                  <motion.video
+                    key="video"
+                    src={tab.videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <motion.img
+                    key={tab.id}
+                    src={tab.image}
+                    alt={tab.label}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Floating secondary analytics thumbnails */}
+            {tab.id === 'analytics' && tab.secondaryImages && (
+              <div className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20 hidden md:flex">
+                {tab.secondaryImages.map((img, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 20, rotate: i === 0 ? 5 : -5 }}
+                    animate={{ opacity: 1, x: 0, rotate: 0 }}
+                    transition={{ delay: 0.4 + i * 0.15, type: "spring", bounce: 0.4 }}
+                    className="w-[100px] h-[180px] rounded-xl border border-white/10 overflow-hidden shadow-2xl"
+                  >
+                    <img src={img} alt="Analytics view" className="w-full h-full object-cover" />
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
-          </AnimatePresence>
+            )}
+          </div>
+
+          {/* Right: Tab details */}
+          <div className="flex flex-col border-t lg:border-t-0 lg:border-l border-[var(--border-glass)]">
+            
+            {/* Tab buttons */}
+            <div className="flex flex-col border-b border-[var(--border-glass)]">
+              {TABS.map((t, i) => (
+                <button
+                  key={t.id}
+                  onClick={() => setActiveTab(i)}
+                  className={`flex items-center gap-4 px-8 py-5 text-left transition-colors duration-300 ${
+                    activeTab === i 
+                      ? 'bg-white/10 text-white' 
+                      : 'text-white/40 hover:bg-white/5 hover:text-white/80'
+                  } ${i < TABS.length - 1 ? 'border-b border-[var(--border-glass)]' : ''}`}
+                >
+                  <span className="w-6 opacity-50 text-xs font-bold">{t.num}</span>
+                  <span className="text-xs font-bold tracking-widest">{t.label}</span>
+                  {activeTab === i && (
+                    <motion.span 
+                      layoutId="activeTabIndicator"
+                      className="ml-auto w-2 h-2 rounded-full bg-[var(--accent-purple)] shadow-[0_0_10px_var(--accent-purple)]" 
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Detail panel */}
+            <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={tab.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <h3 className="text-2xl font-bold text-white mb-4">{tab.headline}</h3>
+                  <p className="body-md mb-8">{tab.description}</p>
+
+                  {/* Skill chips */}
+                  <div className="flex flex-wrap gap-2">
+                    {tab.skills.map((skill) => (
+                      <span key={skill} className="chip">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+          </div>
         </div>
       </motion.div>
-
-      {/* Responsive override for mobile */}
-      <style>{`
-        @media (max-width: 1024px) {
-          .destiny-explorer-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .destiny-explorer-grid > div:first-child {
-            padding: 40px 24px !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

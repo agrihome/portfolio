@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import cursorFollowImg from './assets/cursor follow.jpeg'
-import Text3DFlip from './components/ui/text-3d-flip'
 import DestinyExplorer from './components/DestinyExplorer'
 import SkillsMatrix from './components/SkillsMatrix'
 import MarketingShowcase from './components/MarketingShowcase'
 import Contact from './components/Contact'
 
-
 const App = () => {
-  const [time, setTime] = useState(new Date())
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
 
   const mouseX = useMotionValue(0)
@@ -20,12 +17,11 @@ const App = () => {
   const smoothY = useSpring(mouseY, springConfig)
 
   // 3D Tilt Effect
-  const rotateX = useSpring(useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [20, -20]), springConfig)
-  const rotateY = useSpring(useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-20, 20]), springConfig)
+  const rotateX = useSpring(useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [15, -15]), springConfig)
+  const rotateY = useSpring(useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-15, 15]), springConfig)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
-    const timer = setInterval(() => setTime(new Date()), 1000)
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX)
@@ -34,67 +30,52 @@ const App = () => {
 
     window.addEventListener('mousemove', handleMouseMove)
     return () => {
-      clearInterval(timer)
       window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [theme, mouseX, mouseY])
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
-  }
-
   return (
     <>
       {/* ── NAV ─────────────────────────────── */}
       <motion.nav 
-        className="fixed top-0 left-10 right-10 z-50 flex items-center justify-between px-10 pt-10 pb-6 bg-[var(--nav-bg)] backdrop-blur-md"
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between px-8 py-4 rounded-full border border-[var(--border-glass)] backdrop-blur-2xl shadow-2xl"
+        style={{ width: '90%', maxWidth: '1200px', background: 'var(--nav-bg)' }}
         role="navigation" 
         aria-label="Main navigation"
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
       >
-        <a href="/" className="nav-logo" aria-label="Home">
-          <Text3DFlip secondaryChildren="ALLINALL">ADHITHAN</Text3DFlip>
+        <a href="/" className="font-bold text-lg tracking-tight hover:text-[var(--accent-purple)] transition-colors">
+          ADHITHAN
         </a>
-        <ul className="nav-links hidden md:flex items-center gap-10 list-none">
-          {['Home', 'Create', 'Build', 'Market', 'Contact'].map((item, i) => (
+        <ul className="hidden md:flex items-center gap-8 list-none">
+          {['Home', 'Create', 'Build', 'Market'].map((item, i) => (
             <motion.li 
               key={item}
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 + i * 0.1 }}
+              transition={{ delay: 0.2 + i * 0.1 }}
             >
-              <a href={`#${item.toLowerCase()}`} className={item === 'Home' ? 'active' : ''}>
-                <Text3DFlip secondaryChildren={
-                  item === 'Home' ? 'Start' : 
-                  item === 'Create' ? 'Destiny' : 
-                  item === 'Build' ? 'Skills' : 
-                  item === 'Market' ? 'Growth' : 
-                  item === 'Contact' ? 'Reach Out' : 
-                  undefined
-                }>
-                  {item}
-                </Text3DFlip>
+              <a href={`#${item.toLowerCase()}`} className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+                {item}
               </a>
             </motion.li>
           ))}
         </ul>
-        <div className="nav-right flex items-center gap-5">
+        <div className="flex items-center gap-6">
           <button
-            id="theme-toggle-btn"
-            className="theme-toggle flex items-center justify-center w-8 h-8 cursor-pointer bg-transparent text-[var(--ink-muted)] hover:text-[var(--ink)] transition-colors"
+            className="w-8 h-8 flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            aria-label="Toggle theme"
           >
             <motion.div
               key={theme}
-              initial={{ rotate: -90, scale: 0, opacity: 0 }}
-              animate={{ rotate: 0, scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              initial={{ rotate: -90, scale: 0 }}
+              animate={{ rotate: 0, scale: 1 }}
+              transition={{ duration: 0.3 }}
             >
               {theme === 'dark' ? (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -103,17 +84,21 @@ const App = () => {
               )}
             </motion.div>
           </button>
-          <a href="#contact" className="nav-cta" id="nav-cta-link">
-            <Text3DFlip>Let's Talk</Text3DFlip>
+          <a href="#contact" className="glass-button">
+            Let's Talk
           </a>
         </div>
       </motion.nav>
 
       {/* ── HERO ────────────────────────────── */}
       <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12" aria-label="Hero section" style={{ perspective: '1200px' }}>
+        
+        {/* Background glow effects */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none" />
+        
         {/* Cursor Following Image */}
         <motion.div
-          className="absolute pointer-events-none z-50 hidden md:block"
+          className="absolute pointer-events-none z-0 hidden md:block"
           style={{
             x: smoothX,
             y: smoothY,
@@ -121,62 +106,50 @@ const App = () => {
             rotateY,
             translateX: '-50%',
             translateY: '-50%',
-            width: '300px',
+            width: '340px',
             height: 'auto',
-            opacity: 1,
+            opacity: 0.6,
             transformStyle: 'preserve-3d',
           }}
         >
           <img 
             src={cursorFollowImg} 
             alt="" 
-            className="w-full h-auto shadow-2xl rounded-2xl" 
+            className="w-full h-auto rounded-3xl shadow-[0_0_60px_rgba(147,51,234,0.3)] border border-white/10" 
           />
         </motion.div>
 
-        <div className="hero-center relative z-10">
+        <div className="text-center relative z-10">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.215, 0.61, 0.355, 1], delay: 0.2 }}
+            className="text-[clamp(60px,12vw,140px)] font-extrabold leading-[1.05] tracking-tight"
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, type: "spring", bounce: 0.3 }}
           >
-            I DESIGN<br />
-            BUILD,<br />
-            & MARKET<br />
-            <em>PRODUCTS.</em>
+            I DESIGN <br />
+            <span className="text-gradient-vibrant">BUILD</span>, & <br />
+            MARKET <br />
+            PRODUCTS.
           </motion.h1>
+          <motion.p
+            className="mt-8 text-lg text-[var(--text-secondary)] max-w-lg mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Elevating ideas into premium digital experiences through deep engineering and striking design.
+          </motion.p>
         </div>
 
-        <motion.div 
-          className="nominee-badge"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <span className="nominee-logo">w.</span>
-          <span className="nominee-text">Nominee</span>
-        </motion.div>
-
-        <motion.div 
-          className="hero-footer"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
-          <div className="hero-footer-left label-caps">
-            PRODUCT BUILDER · DESIGNER · ENGINEER · MARKETER
-          </div>
-          <div className="hero-footer-right label-caps">
-            TAMIL NADU, IN &nbsp; {formatTime(time)}
-          </div>
-        </motion.div>
       </section>
 
       {/* ── SECTIONS ─────────────────────────── */}
-      <DestinyExplorer />
-      <SkillsMatrix />
-      <MarketingShowcase />
-      <Contact />
+      <div className="flex flex-col gap-32 pb-40 px-6 md:px-[var(--spacing-margin-desktop)] max-w-[1600px] mx-auto">
+        <DestinyExplorer />
+        <SkillsMatrix />
+        <MarketingShowcase />
+        <Contact />
+      </div>
 
     </>
   )

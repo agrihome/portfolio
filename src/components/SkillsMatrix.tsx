@@ -16,6 +16,7 @@ const CATEGORIES = [
       'Interaction Design',
       'Information Architecture',
     ],
+    glow: 'rgba(147, 51, 234, 0.4)', // Purple
   },
   {
     title: 'ENGINEERING',
@@ -31,6 +32,7 @@ const CATEGORIES = [
       'State Management',
       'Cross-Platform Dev',
     ],
+    glow: 'rgba(59, 130, 246, 0.4)', // Blue
   },
   {
     title: 'GROWTH & INTELLIGENCE',
@@ -46,6 +48,7 @@ const CATEGORIES = [
       'Motion Graphics',
       'Video Editing',
     ],
+    glow: 'rgba(236, 72, 153, 0.4)', // Pink
   },
 ]
 
@@ -53,47 +56,29 @@ const SkillsMatrix = () => {
   const [hoveredCategory, setHoveredCategory] = useState<number | null>(null)
 
   return (
-    <section
-      id="build"
-      className="py-40 w-full"
-      aria-label="Skills and capabilities"
-    >
+    <section id="build" className="w-full" aria-label="Skills and capabilities">
       {/* Section header */}
       <motion.div 
         className="section-header" 
-        style={{ padding: '0 var(--spacing-margin-desktop)' }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div>
-          <span className="label-caps" style={{ display: 'block', marginBottom: 12 }}>
-            02 / BUILD
-          </span>
-          <h2 className="headline-lg tracking-tighter">CAPABILITIES</h2>
-          <p className="body-md" style={{ color: 'var(--ink-muted)', marginTop: 8, maxWidth: 480 }}>
-            Full-stack product building — from ideation and design through engineering and growth.
-          </p>
-        </div>
+        <span className="label-caps text-gradient-vibrant">02 / BUILD</span>
+        <h2 className="headline-lg">CAPABILITIES</h2>
+        <p className="body-md max-w-xl">
+          Full-stack product building — from ideation and design through engineering and growth.
+        </p>
       </motion.div>
 
-      {/* Skills grid */}
+      {/* Bento box skills grid */}
       <motion.div
-        className="skills-matrix-grid"
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1px',
-          background: 'var(--color-outline-variant)',
-          borderTop: '1px solid var(--color-outline-variant)',
-          borderBottom: '1px solid var(--color-outline-variant)',
-          marginTop: 64,
-        }}
       >
         {CATEGORIES.map((cat, catIdx) => (
           <motion.div
@@ -104,104 +89,52 @@ const SkillsMatrix = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: catIdx * 0.1 }}
-            style={{
-              background: hoveredCategory === catIdx ? 'var(--canvas-inv)' : 'var(--canvas)',
-              padding: '48px 32px',
-              cursor: 'default',
-              transition: 'background 400ms ease, color 400ms ease',
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: 420,
-            }}
+            className="glass-panel relative overflow-hidden flex flex-col p-8 md:p-10 min-h-[460px] group"
           >
-            {/* Category number */}
-            <span
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.12em',
-                color: hoveredCategory === catIdx ? 'var(--ink-inv)' : 'var(--ink-muted)',
-                marginBottom: 8,
-                transition: 'color 400ms ease',
-              }}
-            >
-              0{catIdx + 1}
-            </span>
+            {/* Dynamic hover glow */}
+            <motion.div 
+              className="absolute -top-32 -right-32 w-64 h-64 rounded-full blur-[80px] pointer-events-none transition-opacity duration-500"
+              style={{ background: cat.glow }}
+              animate={{ opacity: hoveredCategory === catIdx ? 1 : 0 }}
+            />
 
-            {/* Category title */}
-            <h3
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 24,
-                letterSpacing: '0.03em',
-                color: hoveredCategory === catIdx ? 'var(--ink-inv)' : 'var(--ink)',
-                textTransform: 'uppercase',
-                marginBottom: 32,
-                transition: 'color 400ms ease',
-              }}
-            >
-              {cat.title}
-            </h3>
+            {/* Category header */}
+            <div className="mb-10 z-10">
+              <span className="text-xs font-bold tracking-[0.2em] text-white/30 block mb-3 group-hover:text-white/80 transition-colors">
+                0{catIdx + 1}
+              </span>
+              <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/50 transition-all">
+                {cat.title}
+              </h3>
+            </div>
 
             {/* Skills list */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            <div className="flex flex-col gap-0 z-10 flex-1">
               {cat.skills.map((skill, skillIdx) => (
-                <div
+                <motion.div
                   key={skill}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '10px 0',
-                    borderBottom: skillIdx < cat.skills.length - 1 ? '1px solid' : 'none',
-                    borderColor: hoveredCategory === catIdx
-                      ? 'rgba(17, 17, 17, 0.18)'
-                      : 'var(--color-outline-variant)',
-                    transition: 'border-color 400ms ease',
+                  className="flex items-center justify-between py-3 border-b border-white/5 group-hover:border-white/10 transition-colors last:border-0"
+                  animate={{ 
+                    x: hoveredCategory === catIdx ? 10 : 0,
+                    opacity: hoveredCategory === catIdx ? 1 : 0.7 
+                  }}
+                  transition={{ 
+                    duration: 0.3, 
+                    delay: hoveredCategory === catIdx ? skillIdx * 0.03 : 0 
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: 12,
-                      fontWeight: 400,
-                      letterSpacing: '0.02em',
-                      color: hoveredCategory === catIdx ? 'var(--ink-inv)' : 'var(--ink)',
-                      transition: 'color 400ms ease',
-                    }}
-                  >
+                  <span className="text-[13px] font-medium text-white/80 group-hover:text-white">
                     {skill}
                   </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: 10,
-                      fontWeight: 700,
-                      letterSpacing: '0.1em',
-                      color: hoveredCategory === catIdx
-                        ? 'rgba(17, 17, 17, 0.45)'
-                        : 'var(--ink-muted)',
-                      transition: 'color 400ms ease',
-                    }}
-                  >
+                  <span className="text-[10px] font-bold tracking-[0.1em] text-white/20 group-hover:text-white/40">
                     {String(skillIdx + 1).padStart(2, '0')}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
         ))}
       </motion.div>
-
-      {/* Responsive override for mobile */}
-      <style>{`
-        @media (max-width: 1024px) {
-          .skills-matrix-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

@@ -16,7 +16,7 @@ const PROJECTS = [
     image: instaMockup,
     skills: ['Brand Strategy', 'Visual Identity', 'Content Pillars', 'Audience Targeting'],
     links: [
-      { label: 'INSTAGRAM', href: 'https://www.instagram.com/everyday.standards/', icon: 'insta' },
+      { label: 'Instagram', href: 'https://www.instagram.com/everyday.standards/', icon: 'insta' },
     ],
   },
   {
@@ -28,7 +28,7 @@ const PROJECTS = [
     image: youtubeMockup,
     skills: ['Video Editing', 'Motion Graphics', 'Content Strategy', 'Scripting'],
     links: [
-      { label: 'WATCH SHORTS', href: 'https://www.youtube.com/@everyday.standards/shorts', icon: 'yt' },
+      { label: 'Watch Shorts', href: 'https://www.youtube.com/@everyday.standards/shorts', icon: 'yt' },
     ],
   },
   {
@@ -40,7 +40,7 @@ const PROJECTS = [
     image: xMockup,
     skills: ['Copywriting', 'Community Building', 'Networking', 'Thought Leadership'],
     links: [
-      { label: 'VIEW PROFILE', href: '#', icon: 'x' },
+      { label: 'View Profile', href: '#', icon: 'x' },
     ],
   },
   {
@@ -52,7 +52,7 @@ const PROJECTS = [
     image: evWebsiteMockup,
     skills: ['React', 'TypeScript', 'Responsive Design', 'SEO', 'Performance'],
     links: [
-      { label: 'VISIT SITE', href: 'https://everydaystandards.in', icon: 'link' },
+      { label: 'Visit Site', href: 'https://everydaystandards.in', icon: 'link' },
     ],
   },
 ]
@@ -62,158 +62,97 @@ const MarketingShowcase = () => {
   const project = PROJECTS[activeProject]
 
   return (
-    <section
-      id="market"
-      className="py-40 w-full"
-      aria-label="Marketing and branding showcase"
-    >
+    <section id="market" className="w-full" aria-label="Marketing and branding showcase">
       {/* Section header */}
       <motion.div 
         className="section-header" 
-        style={{ padding: '0 var(--spacing-margin-desktop)' }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div>
-          <span className="label-caps" style={{ display: 'block', marginBottom: 12 }}>
-            03 / MARKET
-          </span>
-          <h2 className="headline-lg tracking-tighter">GROWTH</h2>
-          <p className="body-md" style={{ color: 'var(--ink-muted)', marginTop: 8, maxWidth: 480 }}>
-            Branding, content creation, and web experiences that drive engagement and conversion.
-          </p>
-        </div>
+        <span className="label-caps text-gradient-vibrant">03 / MARKET</span>
+        <h2 className="headline-lg">GROWTH</h2>
+        <p className="body-md max-w-xl">
+          Branding, content creation, and web experiences that drive engagement and conversion.
+        </p>
       </motion.div>
 
-      {/* Project selector tabs */}
-      <div
-        style={{
-          display: 'flex',
-          borderTop: '1px solid var(--color-outline-variant)',
-          borderBottom: '1px solid var(--color-outline-variant)',
-          marginTop: 64,
-        }}
+      {/* Glass card container */}
+      <motion.div
+        className="glass-panel overflow-hidden flex flex-col"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.3 }}
       >
-        {PROJECTS.map((p, i) => (
-          <motion.button
-            key={p.id}
-            onClick={() => setActiveProject(i)}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            style={{
-              flex: 1,
-              padding: '20px 24px',
-              background: activeProject === i ? 'var(--canvas-inv)' : 'transparent',
-              color: activeProject === i ? 'var(--ink-inv)' : 'var(--ink-muted)',
-              border: 'none',
-              borderRight: i < PROJECTS.length - 1 ? '1px solid var(--color-outline-variant)' : 'none',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-body)',
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase' as const,
-              transition: 'background 300ms ease, color 300ms ease, transform 200ms ease',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-              justifyContent: 'center',
-            }}
-            whileHover={{ y: -2 }}
-            whileTap={{ y: 0 }}
-          >
-            <span style={{ opacity: 0.5 }}>{p.num}</span>
-            <span>{p.title}</span>
-          </motion.button>
-        ))}
-      </div>
-
-      {/* Project detail */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={project.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
-          transition={{ duration: 0.5, staggerChildren: 0.1 }}
-          className="marketing-detail-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '1px',
-            background: 'var(--color-outline-variant)',
-            borderBottom: '1px solid var(--color-outline-variant)',
-          }}
-        >
-          {/* Image panel */}
-          <div
-            style={{
-              background: 'var(--canvas)',
-              overflow: 'hidden',
-              position: 'relative',
-            }}
-          >
-            <motion.img
-              key={project.image}
-              src={project.image}
-              alt={project.title}
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                minHeight: 400,
-              }}
-            />
-            {/* Tag overlay */}
-            <motion.span
-              className="label-caps"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-              style={{
-                position: 'absolute',
-                bottom: 24,
-                left: 24,
-                background: 'var(--canvas-inv)',
-                color: 'var(--ink-inv)',
-                padding: '6px 12px',
-              }}
+        {/* Project selector tabs */}
+        <div className="flex overflow-x-auto no-scrollbar border-b border-[var(--border-glass)]">
+          {PROJECTS.map((p, i) => (
+            <button
+              key={p.id}
+              onClick={() => setActiveProject(i)}
+              className="relative flex-1 min-w-[200px] px-6 py-6 flex items-center justify-center gap-3 transition-colors duration-300 group"
             >
-              {project.tag}
-            </motion.span>
-          </div>
+              <span className={`text-xs font-bold transition-colors ${activeProject === i ? 'text-[var(--accent-pink)]' : 'text-white/30 group-hover:text-white/50'}`}>
+                {p.num}
+              </span>
+              <span className={`text-xs font-bold tracking-widest transition-colors ${activeProject === i ? 'text-white' : 'text-white/50 group-hover:text-white/80'}`}>
+                {p.title}
+              </span>
+              
+              {/* Active Tab indicator */}
+              {activeProject === i && (
+                <motion.div 
+                  layoutId="marketingTabIndicator"
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-purple)] to-[var(--accent-pink)]"
+                />
+              )}
+            </button>
+          ))}
+        </div>
 
-          {/* Info panel */}
-          <div
-            style={{
-              background: 'var(--canvas)',
-              padding: '48px 40px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
+        {/* Project detail */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, scale: 0.98, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, scale: 0.98, filter: 'blur(4px)', transition: { duration: 0.2 } }}
+            transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
+            className="grid grid-cols-1 lg:grid-cols-2"
           >
-            <div>
+            {/* Image panel */}
+            <div className="relative overflow-hidden bg-black/40 p-8 lg:p-16 flex items-center justify-center min-h-[400px]">
+              {/* Parallax Image */}
+              <motion.img
+                key={project.image}
+                src={project.image}
+                alt={project.title}
+                initial={{ scale: 1.1, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl border border-white/10"
+              />
+              
+              {/* Floating Tag */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, type: "spring", bounce: 0.5 }}
+                className="absolute bottom-8 left-8 bg-black/60 backdrop-blur-xl border border-white/20 text-white text-[10px] font-bold tracking-widest px-4 py-2 rounded-full uppercase shadow-2xl"
+              >
+                {project.tag}
+              </motion.div>
+            </div>
+
+            {/* Info panel */}
+            <div className="p-10 lg:p-16 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-[var(--border-glass)]">
               <motion.h3
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 32,
-                  letterSpacing: '0.02em',
-                  color: 'var(--ink)',
-                  textTransform: 'uppercase',
-                  marginBottom: 20,
-                }}
+                transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
+                className="text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-6"
               >
                 {project.title}
               </motion.h3>
@@ -221,14 +160,8 @@ const MarketingShowcase = () => {
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 14,
-                  lineHeight: '24px',
-                  color: 'var(--ink-muted)',
-                  marginBottom: 32,
-                }}
+                transition={{ delay: 0.1, duration: 0.5, type: "spring", bounce: 0.4 }}
+                className="text-[16px] leading-[1.7] text-white/60 mb-10"
               >
                 {project.description}
               </motion.p>
@@ -237,8 +170,8 @@ const MarketingShowcase = () => {
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-                style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 40 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex flex-wrap gap-2 mb-12"
               >
                 {project.skills.map((skill, i) => (
                   <motion.span 
@@ -246,54 +179,31 @@ const MarketingShowcase = () => {
                     className="chip"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + (i * 0.05), duration: 0.3 }}
-                    whileHover={{ scale: 1.05, borderColor: 'var(--ink)', color: 'var(--ink)' }}
+                    transition={{ delay: 0.3 + (i * 0.05), type: "spring" }}
                   >
                     {skill}
                   </motion.span>
                 ))}
               </motion.div>
+
+              {/* Action links */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="flex gap-4 flex-wrap"
+              >
+                {project.links.map((link) => (
+                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="glass-button">
+                    {link.label}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                  </a>
+                ))}
+              </motion.div>
             </div>
-
-            {/* Action links */}
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
-              style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}
-            >
-              {project.links.map((link) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  style={{ padding: '14px 28px', fontSize: 11 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {link.label} ↗
-                </motion.a>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Responsive override */}
-      <style>{`
-        @media (max-width: 1024px) {
-          .marketing-detail-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .marketing-detail-grid > div:last-child {
-            padding: 32px 24px !important;
-          }
-        }
-      `}</style>
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
     </section>
   )
 }
