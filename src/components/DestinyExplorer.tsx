@@ -96,7 +96,9 @@ const DestinyExplorer = () => {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.3 }}
       >
-        <BorderBeam size={400} duration={10} delay={0} colorFrom="#f59e0b" colorTo="#facc15" borderWidth={1.5} className="z-30" />
+        <div className="absolute inset-0 z-30 pointer-events-none rounded-[inherit]">
+          <BorderBeam size={400} duration={10} delay={0} colorFrom="#f59e0b" colorTo="#facc15" borderWidth={1.5} />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 relative z-20">
           
           {/* Left: Phone mockup */}
