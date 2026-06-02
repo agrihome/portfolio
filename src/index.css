@@ -53,9 +53,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-image: radial-gradient(circle at 50% -20%, rgba(251, 191, 36, 0.15), transparent 40%),
-                    radial-gradient(circle at 100% 50%, rgba(245, 158, 11, 0.1), transparent 50%);
-  background-attachment: fixed;
 }
 
 #root {
