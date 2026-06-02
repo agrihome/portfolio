@@ -120,14 +120,7 @@ const App = () => {
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
             >
-              MARKET
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 50, rotateX: 45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
-            >
-              PRODUCTS.
+              MARKET.
             </motion.div>
           </div>
 
