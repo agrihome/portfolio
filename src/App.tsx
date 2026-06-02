@@ -88,7 +88,6 @@ const App = () => {
             translateY: '-50%',
             width: '380px',
             height: 'auto',
-            opacity: 0.85,
             transformStyle: 'preserve-3d',
             zIndex: 5,
           }}
