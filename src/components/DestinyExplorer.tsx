@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { StarsBackground } from './animate-ui/components/backgrounds/stars'
-import { ShineBorder } from './ui/shine-border'
+import { BorderBeam } from './ui/border-beam'
 
 import onboardingImg from '../assets/onboarding.jpg'
 import homeRoutinesImg from '../assets/home routines.png'
@@ -96,11 +96,11 @@ const DestinyExplorer = () => {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.3 }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 relative z-20 gap-4 lg:gap-0">
+        <BorderBeam size={400} duration={10} delay={0} colorFrom="#f59e0b" colorTo="#facc15" borderWidth={1.5} className="z-30" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 relative z-20">
           
           {/* Left: Phone mockup */}
-          <div className="relative flex items-center justify-center p-6 md:p-12 lg:p-20 w-full overflow-hidden border-b lg:border-b-0 lg:border-r border-[var(--border-glass)]">
-            <ShineBorder shineColor={["#f59e0b", "#fbbf24", "#facc15"]} borderWidth={1.5} duration={8} className="z-10" />
+          <div className="relative flex items-center justify-center p-6 md:p-12 lg:p-20 w-full overflow-hidden">
             <StarsBackground className="absolute inset-0 z-0" />
             
             {/* Phone frame */}
@@ -159,8 +159,7 @@ const DestinyExplorer = () => {
           </div>
 
           {/* Right: Tab details */}
-          <div className="relative flex flex-col">
-            <ShineBorder shineColor={["#f59e0b", "#fbbf24", "#facc15"]} borderWidth={1.5} duration={8} className="z-10 pointer-events-none" />
+          <div className="flex flex-col border-t lg:border-t-0 lg:border-l border-[var(--border-glass)] relative">
             
             {/* Tab buttons */}
             <div className="flex flex-col border-b border-[var(--border-glass)]">
