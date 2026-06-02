@@ -91,7 +91,7 @@ const App = () => {
       </motion.nav>
 
       {/* ── HERO ────────────────────────────── */}
-      <section id="home" className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12 bg-black" aria-label="Hero section" style={{ perspective: '1200px' }}>
+      <section id="home" className="w-full flex flex-col justify-center items-center relative overflow-hidden px-6 md:px-12 bg-black pt-32 pb-16 lg:h-screen lg:py-0" aria-label="Hero section" style={{ perspective: '1200px' }}>
         
         {/* Cursor Following Image */}
         <motion.div
@@ -161,7 +161,7 @@ const App = () => {
 
         {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
+          className="mt-12 lg:absolute lg:bottom-12 lg:mt-0 left-1/2 lg:-translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
