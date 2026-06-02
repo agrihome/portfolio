@@ -45,14 +45,14 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <a href="mailto:rmadhithan20012002@gmail.com" className="glass-button text-lg px-8 py-4 bg-white text-black hover:bg-white/90 flex items-center gap-3">
+          <a href="mailto:rmadhithan20012002@gmail.com" className="glass-button text-lg px-8 py-4 bg-white text-black hover:bg-white/90 inline-flex items-center justify-center gap-3">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />
             </svg>
             Email Me
           </a>
-          <a href="https://www.linkedin.com/in/adhithan-rm-a16600217/" target="_blank" rel="noreferrer" className="glass-button text-lg px-8 py-4 flex items-center gap-3">
+          <a href="https://www.linkedin.com/in/adhithan-rm-a16600217/" target="_blank" rel="noreferrer" className="glass-button text-lg px-8 py-4 inline-flex items-center justify-center gap-3">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
               <rect x="2" y="9" width="4" height="12" />
@@ -60,7 +60,7 @@ const Contact = () => {
             </svg>
             LinkedIn
           </a>
-          <a href="https://www.instagram.com/everyday.standards/" target="_blank" rel="noreferrer" className="glass-button text-lg px-8 py-4 flex items-center gap-3">
+          <a href="https://www.instagram.com/everyday.standards/" target="_blank" rel="noreferrer" className="glass-button text-lg px-8 py-4 inline-flex items-center justify-center gap-3">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
