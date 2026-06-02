@@ -4,9 +4,9 @@ import { StarsBackground } from './animate-ui/components/backgrounds/stars'
 import { BorderBeam } from './ui/border-beam'
 
 import onboardingImg from '../assets/onboarding.jpg'
-import homeRoutinesImg from '../assets/home routines.png'
+import routineListImg from '../assets/routine list.png'
 import todosPageImg from '../assets/todos page.png'
-import destinyAiImg from '../assets/destiny-ai.png'
+import aiAssistantImg from '../assets/ai assistant.png'
 import habitAnalyticsImg from '../assets/habit analytics.png'
 import pathAnalyticsImg from '../assets/path analytics.png'
 import routineAnalyticsImg from '../assets/routine analytics.png'
@@ -27,7 +27,7 @@ const TABS = [
     id: 'routines',
     num: '02',
     label: 'HABITS & ROUTINES',
-    image: homeRoutinesImg,
+    image: routineListImg,
     type: 'image' as const,
     headline: 'Cross-Platform UI & State',
     description: 'Built a rich habit management system with routines, todos, and calendar views. Real-time state sync across Flutter widgets with reactive data binding.',
@@ -37,7 +37,7 @@ const TABS = [
     id: 'ai',
     num: '03',
     label: 'AI COACHING',
-    image: destinyAiImg,
+    image: aiAssistantImg,
     type: 'image' as const,
     headline: 'Intelligent Coaching Engine',
     description: 'Integrated an LLM-powered AI coaching assistant trained on performance psychology. Delivers personalized habit optimization through natural conversation.',
