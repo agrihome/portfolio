@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { StarsBackground } from './animate-ui/components/backgrounds/stars'
+import { BorderBeam } from './ui/border-beam'
 
 import youtubeMockup from '../assets/YouTube.jpg'
 import evWebsiteMockup from '../assets/website.png'
@@ -78,18 +80,22 @@ const MarketingShowcase = () => {
         </p>
       </motion.div>
 
-      {/* Glass card container */}
+      {/* Container */}
       <motion.div
-        className="glass-panel overflow-hidden"
+        className="bg-black border border-[var(--border-glass)] rounded-[30px] overflow-hidden relative transition-all duration-500 hover:border-white/10 hover:-translate-y-1"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.3 }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="absolute inset-0 z-30 pointer-events-none rounded-[inherit]">
+          <BorderBeam size={400} duration={10} delay={0} colorFrom="#f59e0b" colorTo="#facc15" borderWidth={1.5} />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 relative z-20">
           
           {/* Left: Image panel */}
-          <div className="relative overflow-hidden bg-black/40 p-8 lg:p-16 flex items-center justify-center min-h-[400px]">
+          <div className="relative flex items-center justify-center p-8 lg:p-16 w-full overflow-hidden min-h-[400px] border-b lg:border-b-0 lg:border-r border-[var(--border-glass)]">
+            <StarsBackground className="absolute inset-0 z-0" />
             <AnimatePresence mode="wait">
               {/* Parallax Image */}
               <motion.img
