@@ -13,8 +13,8 @@
 
 :root {
   /* ── Core palette ── */
-  --bg-base: #050505;
-  --bg-surface: #111111;
+  --bg-base: #000000;
+  --bg-surface: #000000;
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.6);
   --text-muted: rgba(255, 255, 255, 0.4);
@@ -26,7 +26,7 @@
   /* ── Structural ── */
   --border-glass: rgba(255, 255, 255, 0.1);
   --border-glass-hover: rgba(255, 255, 255, 0.2);
-  --bg-glass: rgba(20, 20, 20, 0.4);
+  --bg-glass: #000000;
 
   /* ── Nav glassmorphism ── */
   --nav-bg: rgba(5, 5, 5, 0.6);
@@ -121,7 +121,7 @@ body {
 
 .glass-panel:hover {
   border-color: var(--border-glass-hover);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 24px rgba(251, 191, 36, 0.15);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
   transform: translateY(-4px);
 }
 
