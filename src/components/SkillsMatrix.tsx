@@ -23,7 +23,7 @@ const CATEGORIES = [
     skills: [
       'Flutter & Dart',
       'Django & Python',
-      'Django REST Framework',
+      'Next.js',
       'React & TypeScript',
       'PostgreSQL',
       'Firebase & Supabase',

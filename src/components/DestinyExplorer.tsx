@@ -52,7 +52,7 @@ const TABS = [
     secondaryImages: [pathAnalyticsImg, routineAnalyticsImg],
     headline: 'Data-Driven Insights',
     description: 'Engineered a full analytics pipeline — completion rings, weekly patterns, streak tracking, and path progress visualization powered by PostgreSQL aggregations and Pandas.',
-    skills: ['PostgreSQL', 'Django REST', 'Pandas', 'Data Visualization', 'Reporting'],
+    skills: ['PostgreSQL', 'Next.js', 'Pandas', 'Data Visualization', 'Reporting'],
   },
   {
     id: 'live',
