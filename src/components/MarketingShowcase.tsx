@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { StarsBackground } from './animate-ui/components/backgrounds/stars'
 import { BorderBeam } from './ui/border-beam'
@@ -62,6 +62,13 @@ const PROJECTS = [
 const MarketingShowcase = () => {
   const [activeProject, setActiveProject] = useState(0)
   const project = PROJECTS[activeProject]
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setActiveProject((prev) => (prev + 1) % PROJECTS.length)
+    }, 10000)
+    return () => clearTimeout(timer)
+  }, [activeProject])
 
   return (
     <section id="market" className="w-full" aria-label="Marketing and branding showcase">
