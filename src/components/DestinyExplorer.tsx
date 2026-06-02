@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { StarsBackground } from './animate-ui/components/backgrounds/stars'
 import { BorderBeam } from './ui/border-beam'
@@ -70,6 +70,13 @@ const TABS = [
 const DestinyExplorer = () => {
   const [activeTab, setActiveTab] = useState(0)
   const tab = TABS[activeTab]
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setActiveTab((prev) => (prev + 1) % TABS.length)
+    }, 10000)
+    return () => clearTimeout(timer)
+  }, [activeTab])
 
   return (
     <section id="create" className="w-full" aria-label="Destiny App Explorer">
