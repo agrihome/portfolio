@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <section id="contact" className="w-full" aria-label="Contact">
       <motion.div
-        className="glass-panel flex flex-col items-center justify-center text-center p-8 md:p-16 lg:p-32 overflow-hidden relative"
+        className="glass-panel hover:!border-sky-500/50 hover:!shadow-[0_16px_48px_rgba(0,0,0,0.3),0_0_24px_rgba(56,189,248,0.2)] flex flex-col items-center justify-center text-center p-8 md:p-16 lg:p-32 overflow-hidden relative"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
